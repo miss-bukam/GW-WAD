@@ -1,16 +1,67 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Main-Screen</title>
-    </head>
-    <body>
+<head>
 
-        <h1>Herzlichen Willkommen bei (Website-Name) User (name)</h1>
+    <meta charset="utf-8">
+    <title>Meine Karte</title>
 
-        <hr/>
+    <style>
+        .container {
+            display:flex
+        }
 
+        .map {
+            width: 100%;
+            padding-left: 40px;
+            padding-top: 40px;
+            
+        }
 
+        .list {
+            padding-top: 50px;
+            padding-left: 20px;
+            margin-right: 300px;
+            margin-top: 80px;
+            margin-bottom: 100px;
+            width: 40%;
+            text-align: center;
 
-    </body>
+            border: 1px solid #9fb39084;
+            background-color: rgb(241, 255, 225);
+            border-radius: 50px;
+            border-width: 1px;
+            padding: 20px;
+
+        }
+    </style>
+
+</head>
+<body>
+
+    <h1>Willkommen bei (Website name) User (Username)!</h1>
+    <hr/>
+
+    <div class="container">
+        <div class="map">
+        <iframe
+            width="800"
+            height="800"
+            frameborder="0" style="border:0"
+        
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d195087.03151559424!2d13.392336507812506!3d52.52545140441922!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a85145f306cc63%3A0x80f0b3527c614ca0!2sBerlin!5e0!3m2!1sen!2sus!4v1635001709873!5m2!1en!2sus">
+        </iframe>
+        </div>
+        <div class="list">
+            <h3>Standorte</h3>
+            <ul>
+                <li>Standort 1</li>
+                <li>Standort 2</li>
+                <li>Standort 3</li>
+            </ul>
+        </div>
+    </div>
+
+    
+
+</body>
 </html>
