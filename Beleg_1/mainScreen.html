@@ -13,11 +13,12 @@
         .map {
             width: 100%;
             padding-left: 40px;
-            padding-top: 40px;
+            padding-top: 30px;
             
         }
 
         .list {
+            position: relative;
             padding-top: 50px;
             padding-left: 20px;
             margin-right: 100px;
@@ -34,25 +35,38 @@
 
         }
 
-        button {
-            margin-top: 400px;
-            margin-right: 120px;
-        
+        .button-container {
+            display: flex;
+            margin-left: 100px;
+            position: absolute;
+            bottom: 10px;
+            text-align: center;
+            
         }
 
+        button {
+            padding: 5px;
+            text-align: center;
+            font-size: 15px;
+            margin-top: 25px;
+            margin-left: 10px;
+            margin-right: 10px;
+
+        }
 
     </style>
 
 </head>
 <body>
 
-    <h1>Willkommen bei (Website name) User (Username)!</h1>
+    <h1 style="text-align: center;">Willkommen bei (Website name) User (Username)!</h1>
     <hr/>
 
     <div class="container">
         <div class="map">
             <iframe src="https://www.google.com/maps/d/embed?mid=1WqdnFLt9MN5le4WZuO64OgLoEGNOa18&ehbc=2E312F&noprof=1" width="800" height="700"></iframe>
         </div>
+
         <div class="list">
             <h3>Standorte</h3>
             <ul>
@@ -61,15 +75,12 @@
                 <li>Standort 3</li>
             </ul>
             <div class="button-container">
-                <button margin-right="120px" padding="10px" size="200px" type="logout">Logout </button>
-                <button margin-right="10px" padding="10px" size="200px" type="add">Add</button>
+                <button type="logout">Logout </button>
+                <button type="add">Add</button>
             </div>
         </div>
     </div>
 
-    
-
-    
 
 </body>
 </html>
