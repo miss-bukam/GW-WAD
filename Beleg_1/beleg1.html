@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>WebsiteName</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        
+    </head>
+    <body>
+
+
+        <!-- LOGIN SCREEN ------------------------------------------->
+
+        <div class="login-container">
+            <h1>Website name</h1>
+            <p>Herzlichen Willkommen! Bitte identifiziere dich ^^</p>
+
+            <hr/>
+
+            <form action="/survey" method="GET">
+                <br/>
+                <label for="username">Username: </label>
+                <input type="text" id="usernameID" name="username" required/> 
+                <br/>
+                <br/>
+                <label for="password">Passwort: </label>
+                <input type="password" id="passwordID" name="password" required/>
+                <br/>
+                <br/>
+                <button type="login">Login</button>
+            </form>
+        </div>
+
+        <hr/>
+
+
+        <!-- MAIN SCREEN ------------------------------------------>
+
+        <h1>Willkommen bei (Website name) User (Username)!</h1>
+        <div class="main-container">
+                <div class="map">
+                    <iframe src="https://www.google.com/maps/d/embed?mid=1WqdnFLt9MN5le4WZuO64OgLoEGNOa18&ehbc=2E312F&noprof=1" width="800" height="700"></iframe>
+                </div>
+
+                <div class="list">
+                    <h3>Standorte</h3>
+                    <ul>
+                        <li>Standort 1</li>
+                        <li>Standort 2</li>
+                        <li>Standort 3</li>
+                    </ul>
+                    <div class="button-container">
+                        <button id="logoutID" type="logout">Logout </button>
+                        <button type="add">Add</button>
+                    </div>
+                </div>
+        </div>
+
+        <br>
+        <br>
+        <hr/>
+
+
+        <!-- ADD SCREEN ------------------------------------------>
+
+        <div class="add-container">
+
+            <h3>Füge einen Standort hinzu! </h3>
+        
+        <form>
+            <br/>
+            <label for="name">Name: </label>
+            <input type="text" id="nameID" name="name" required/> 
+            
+            <label for="describtion">Beschreibung: </label>
+            <textarea type="text" id="describtionID" name="describtion"></textarea>
+            
+            <label for="street">Straße: </label>
+            <input type="text" id="streetID" name="street" required/>
+           
+            <label for="zip">Postleitzahl: </label>
+            <input type="text" id="zipID" name="zip" pattern="[0-9]{5}" title="Bitte geben Sie eine fünfstellige Ziffer ein">
+           
+            <label for="city">Stadt: </label>
+            <input type="text" id="cityID" name="city" required/>
+            
+            <label for="bundesland">Bundesland: </label>
+            <select id="cityID" name="city">
+                    <option value="Berlin">Berlin</option>
+                    <option value="Brandenburg">Brandenburg</option>
+                </select>
+            
+            <label for="lat">LAT: </label>
+            <input type="text" id="latID" name="lat">
+           
+            <label for="lon">LON: </label>
+            <input type="text" id="lonID" name="lon">
+            <br/>
+            <br/>
+            
+            <div class="button-container-add">
+                <button type="cancel">Cancel</button>
+                <button type="add">Add</button>
+            </div>
+        </form>
+        </div>
+        <br>
+        <br>
+        <hr/>
+
+        <!-- UPDATE / DELETE SCREEN ------------------------------------------>
+
+        <div class="update-container">
+            <h3>Aktualisiere einen Standort! </h3>
+        
+        <form>
+            <br/>
+            <label for="name">Name: </label>
+            <input type="text" id="nameID" name="name" required/> 
+            
+            <label for="describtion">Beschreibung: </label>
+            <textarea type="text" id="describtionID" name="describtion"></textarea>
+            
+            <label for="street">Straße: </label>
+            <input type="text" id="streetID" name="street" required>
+           
+            <label for="zip">Postleitzahl: </label>
+            <input type="text" id="zipID" name="zip" pattern="[0-9]{5}" title="Bitte geben Sie eine fünfstellige Ziffer ein">
+           
+            <label for="city">Stadt: </label>
+            <input type="text" id="cityID" name="city" required>
+            
+            <label for="bundesland">Bundesland: </label>
+            <select id="cityID" name="city">
+                    <option value="Berlin">Berlin</option>
+                    <option value="Brandenburg">Brandenburg</option>
+                </select>
+            
+            <label for="lat">LAT: </label>
+            <input type="text" id="latID" name="lat">
+           
+            <label for="lon">LON: </label>
+            <input type="text" id="lonID" name="lon">
+            <br/>
+            <br/>
+            <button type="cancel">Cancel</button>
+            <button type="delete">Delete</button>
+            <button type="update">Update</button>
+        </form>
+        </div>
+
+    </body>
+</html>

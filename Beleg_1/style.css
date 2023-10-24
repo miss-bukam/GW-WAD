@@ -1,0 +1,185 @@
+
+/* LOGIN SCREEEN */
+
+.login-container {
+    text-align: center;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-container form {
+    text-align: center;
+    margin-top: 50px;
+}
+
+
+.login-container h1, .login-container p {
+    text-align: center;
+}
+
+.login-container button {
+    padding: 5px;
+    text-align: center;
+    font-size: 12px;
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+/* MAIN SCREEN */
+
+.main-container {
+    display: flex;
+}
+
+.main-container .map {
+    width: 100%;
+    padding-left: 40px;
+    padding-top: 30px;
+    
+}
+
+.main-container .list {
+    position: relative;
+    padding-top: 50px;
+    padding-left: 20px;
+    margin-right: 100px;
+    margin-top: 80px;
+    margin-bottom: 100px;
+    width: 40%;
+    text-align: center;
+
+    border: 1px solid #9fb39084;
+    background-color: rgb(241, 255, 225);
+    border-radius: 50px;
+    border-width: 1px;
+    padding: 20px;
+
+}
+
+.main-container .button-container {
+    display: flex;
+    margin-left: 100px;
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+    
+}
+
+.main-container button {
+    text-align: center;
+    font-size: 15px;
+    margin-top: 25px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+}
+
+/* warum wird Add nicht größer???*/
+.main-container button#addID {
+    font-size: 20px;
+}
+
+.main-container button#logoutID {
+    font-size: 12px;
+}
+
+h1 {
+    text-align: center;
+}
+
+
+/* ADD SCREEN */
+
+.add-container form {
+    text-align: left;
+    max-width: 300px;
+    margin: 0 auto;
+    
+}
+
+.add-container label {
+    display: block;
+    text-align: left;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.add-container input, select {
+    width: 200px;
+    padding: 5px;
+    font-size: 12px;
+}
+
+.add-container textarea {
+    width: 200px;
+    height: 80px;
+    padding: 10px;
+    font-size: 12px;
+}
+
+.add-container input#zipID, input#latID, input#lonID {
+    width: 110px;
+}
+
+.add-container h3 {
+    text-align: center;
+}
+
+.add-container .button-container-add {
+    text-align: center;
+
+}
+
+.add-container button {
+    padding: 5px;
+    font-size: 15px;
+    margin-top: 25px;
+    margin-left: 20px;
+    margin-right: 45px;
+}
+
+/* UPDATE DELETE SCREEN */
+
+.update-container form {
+    text-align: left;
+    max-width: 300px;
+    margin: 0 auto;
+    
+}
+.update-container label {
+    display: block;
+    margin-top: 15px;
+    margin-left: 10px;
+}
+.update-container input, select {
+    width: 250px;
+    padding: 5px;
+    font-size: 12px;
+}
+
+.update-container textarea {
+    width: 250px;
+    height: 80px;
+    padding: 10px;
+    font-size: 12px;
+}
+
+.update-container input#zipID, input#latID, input#lonID {
+    width: 110px;
+}
+
+.update-container h3 {
+    text-align: center;
+}
+
+.update-container button {
+    padding: 5px;
+    text-align: center;
+    font-size: 15px;
+    margin-top: 25px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
