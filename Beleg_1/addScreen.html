@@ -5,43 +5,51 @@
         <title>Add-Screen</title>
         <style>
             form {
-                text-align: center;
-                margin-top: 5px;
+                text-align: left;
+                max-width: 300px;
+                margin: 0 auto;
                 
             }
             label {
                 display: block;
-                margin-top: 15px;
+                text-align: left;
+                margin-top: 10px;
                 margin-left: 10px;
             }
             input, select {
-                width: 250px;
+                width: 200px;
                 padding: 5px;
                 font-size: 15px;
             }
 
             textarea {
-                width: 250px;
+                width: 200px;
                 height: 80px;
                 padding: 10px;
                 font-size: 15px;
             }
 
             input#zipID, input#latID, input#lonID {
-                width: 100px;
+                width: 110px;
             }
 
             h3 {
                 text-align: center;
             }
 
+            button.container {
+                text-align: center;
+            
+            }
+
             button {
-                padding: 10px 15px;
+                padding: 5px;
                 font-size: 15px;
                 margin-top: 25px;
-                margin-left: 45px;
+                margin-left: 20px;
                 margin-right: 45px;
             }
+
         </style>
     </head>
     <body>
@@ -58,13 +66,13 @@
             <textarea type="text" id="describtionID" name="describtion"></textarea>
             
             <label for="street">Straße: </label>
-            <input type="text" id="streetID" name="street" required>
+            <input type="text" id="streetID" name="street" required/>
            
             <label for="zip">Postleitzahl: </label>
             <input type="text" id="zipID" name="zip" pattern="[0-9]{5}" title="Bitte geben Sie eine fünfstellige Ziffer ein">
            
             <label for="city">Stadt: </label>
-            <input type="text" id="cityID" name="city" required>
+            <input type="text" id="cityID" name="city" required/>
             
             <label for="bundesland">Bundesland: </label>
             <select id="cityID" name="city">
@@ -79,8 +87,12 @@
             <input type="text" id="lonID" name="lon">
             <br/>
             <br/>
-            <button type="cancel">Cancel</button>
-            <button type="add">Add</button>
+            
+            <div class="button-container">
+                <button type="cancel">Cancel</button>
+                <button type="add">Add</button>
+            </div>
         </form>
+
     </body>
 </html>
