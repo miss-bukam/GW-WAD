@@ -1,4 +1,141 @@
 <!DOCTYPE html>
 <html>
-    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1uwv6Ixlwq5V6ztDmMqqlnsb_AYZo71w&ehbc=2E312F&noprof=1" width="640" height="480"></iframe>
+    <!--LOGIN SCREEN-->
+    <body>
+        <h1 style="text-align:center">Website name </h1>
+        <p style="text-align: center;">
+        Herzlichen Willkommen! Bitte identifiziere dich ^^
+        </p>
+        <hr/>
+        <br/>
+   
+    <form action="...">     <!--Hier wird warscheinlich die DB angegeben !-->
+    <p style="text-align: center;"
+        <label for="username">Username: </label>
+    <input type="text" id="usernameId" name="username"  required/>
+    <br/> <br/>
+    <label for="password">Password: </label>
+    <input type="text" id="passwordId" name="password"  required/>
+    <br/> <br/>
+    <input type="submit" value="Login"/>
+    </p>
+    </form>
+
+
+    <!--MAIN SCREEN-->
+    
+    <h1 style="text-align: center;">Willkommen bei (Website name) User (Username)!</h1>
+
+    <hr/>
+    
+    <br/> <br/>
+
+    <div class="container">
+        <div class="map">
+            <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1uwv6Ixlwq5V6ztDmMqqlnsb_AYZo71w&ehbc=2E312F&noprof=1" width="800" height="800"></iframe>
+        </div>
+        <div class="list">
+            <h3>Standorte</h3>
+            <ul>
+                <li>Standort 1</li>
+                <li>Standort 2</li>
+                <li>Standort 3</li>
+            </ul>
+            <div class="button-container">
+                <button margin-right="120px" padding="10px" size="200px" type="logout">Logout </button>
+                <button margin-right="10px" padding="10px" size="200px" type="add">Add</button>
+            </div>
+        </div>
+    </div>
+
+    <br/> <br/>
+    <footer style="padding: 8px 9px;">
+        <a href="https://www.htw-berlin.de/impressum/" target="_blank" style="font-size:8px">Impressum</a>
+        <a href="https://www.htw-berlin.de/datenschutz/" target="_blank" style="font-size: 8px;">Datenschutz</a>
+    </footer>
+
+
+
+
+    <!--ADD SCREEN-->
+    <p style="text-align: center;"
+    <label for="name">Name: </label>
+    <input type="text" id="nameId" name="name"  required/>
+    <br/> <br/>
+    <label for="describtion">Describtion: </label>
+    <input type="text" id="descriptionId" name="describtion" />
+    <br/> <br/> 
+    <label for="street">Street: </label>
+    <input type="text" id="streetId" name="street" required/>
+    <br/> <br/>
+    <label for="zip">ZIP: </label>
+    <input type="text" id="zipId" name="zip"  />
+    <br/> <br/>
+    <label for="city">City: </label>
+    <input type="text" id="cityId" name="city" required/>
+    <br/> <br/>
+    <label for="state">State: </label>
+    <input type="text" id="stateId" name="state" list="states" />
+    <datalist>
+        <datalist id="states">
+            <option value="BLN">
+            <option value="BRB">
+        </datalist>
+    </datalist>
+    <br/> <br/>
+
+    <!-- OPTIONAL -->
+    <label for="latitude">Lat: </label>
+    <input type="text" id="latitudeId" name="latitude" value=" OPTIONAL " />
+    <br/> <br/>
+    <label for="longitude">Lon: </label>
+    <input type="text" id="longitudeId" name="longitude" value=" OPTIONAL " />
+    <br/> <br/>
+
+<input type="submit" value="Cancel" style="margin-right: 20px;"/>  
+
+<input type="submit" value="Save" />    
+</p>
+
+
+ <!--UPDATE DELETE SCREEN-->
+ <p style="text-align: center;"
+ <label for="name">Name: </label>
+ <input type="text" id="nameId" name="name" required/>
+ <br/> <br/>
+ <label for="describtion">Describtion: </label>
+ <input type="text" id="descriptionId" name="describtion"  />
+ <br/> <br/>
+ <label for="street">Street: </label>
+ <input type="text" id="streetId" name="street" required/>
+ <br/> <br/>
+ <label for="zip">ZIP: </label>
+ <input type="text" id="zipId" name="zip"  />
+ <br/> <br/>
+ <label for="city">City: </label>
+ <input type="text" id="cityId" name="city"  required/>
+ <br/> <br/>
+ <label for="state">State: </label>
+ <input type="text" id="stateId" name="state" list="states" />
+ <datalist>
+     <datalist id="states">
+         <option value="BLN">
+         <option value="BRB">
+     </datalist>
+ </datalist>
+ <br/> <br/>
+
+ <!-- OPTIONAL -->
+ <label for="latitude">Lat: </label>
+ <input type="text" id="latitudeId" name="latitude" value=" OPTIONAL " />
+ <br/> <br/>
+ <label for="longitude">Lon: </label>
+ <input type="text" id="longitudeId" name="longitude" value=" OPTIONAL " />
+ <br/> <br/>
+ <input type="submit" value="Cancel" style="margin-right: 20px;"/>    
+<input type="image" src="file:///C:/Users/bukam/Desktop/B41%20-%20Web%20Application%20Development/gitRepos/muelleimer.jpg" alt="dient zum löschen" width="30" style="margin-right: 20px;" />
+<input type="submit" value="Save" />    
+</p>
+
+   
 </html>
