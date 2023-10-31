@@ -1,21 +1,25 @@
 
-/* LOGIN SCREEEN */
+/************************** LOGIN SCREEEN ***************************/
 
 .login-container {
-    text-align: center;
+    display: block;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 .login-container form {
+    display: inline-block;
     text-align: center;
     margin-top: 50px;
-}
-
-
-.login-container h1, .login-container p {
-    text-align: center;
+    margin: 0,auto;
+ 
+    border: 1px solid #87878784;
+    background-color: rgb(237, 237, 237);
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
 }
 
 .login-container button {
@@ -28,7 +32,7 @@
 }
 
 
-/* MAIN SCREEN */
+/************************** MAIN SCREEN **************************/
 
 .main-container {
     display: flex;
@@ -42,56 +46,54 @@
 }
 
 .main-container .list {
-    position: relative;
+    position:static;
     padding-top: 50px;
     padding-left: 20px;
-    margin-right: 100px;
+    margin-right: 10px;
     margin-top: 80px;
     margin-bottom: 100px;
-    width: 40%;
+    width: 400px;
+    height: 600px;
     text-align: center;
 
     border: 1px solid #9fb39084;
-    background-color: rgb(241, 255, 225);
-    border-radius: 50px;
-    border-width: 1px;
+    background-color: rgb(238, 238, 238);
+    border-radius: 15px;
     padding: 20px;
 
 }
 
-.main-container .button-container {
-    display: flex;
-    margin-left: 100px;
-    position: absolute;
-    bottom: 10px;
-    text-align: center;
-    
-}
-
-.main-container button {
-    text-align: center;
-    font-size: 15px;
-    margin-top: 25px;
-    margin-left: 10px;
-    margin-right: 10px;
-
-}
-
 /* warum wird Add nicht größer???*/
-.main-container button#addID {
-    font-size: 20px;
+button#addID {
+    margin-top: 150%;
+    margin-left: 85%;
+    padding: 9px;
+    font-size: 15px;
 }
 
 .main-container button#logoutID {
     font-size: 12px;
 }
 
-h1 {
-    text-align: center;
+.mapUndStandort {
+    display: flex;
+    flex-direction: row;
+    border: #87878784;
+    border-radius: 15px;
 }
 
+.logout-container {
+    margin-right: 650px;
+    margin-top: 700px;
+    display: flex;
+    flex-direction:column;
+}
 
-/* ADD SCREEN */
+footer {
+    
+}
+
+/************************** ADD SCREEN **************************/
 
 .add-container form {
     text-align: left;
@@ -141,7 +143,7 @@ h1 {
     margin-right: 45px;
 }
 
-/* UPDATE DELETE SCREEN */
+/************************** UPDATE DELETE SCREEN **************************/
 
 .update-container form {
     text-align: left;
