@@ -38,22 +38,23 @@
 
         <h1>Willkommen bei (Website name) User (Username)!</h1>
         <div class="main-container">
-                <div class="map">
+            <div class="mapUndStandort"><div class="map">
                     <iframe src="https://www.google.com/maps/d/embed?mid=1WqdnFLt9MN5le4WZuO64OgLoEGNOa18&ehbc=2E312F&noprof=1" width="800" height="700"></iframe>
                 </div>
 
                 <div class="list">
-                    <h3>Standorte</h3>
+                    <h2>Standorte</h2>
                     <ul>
                         <li>Standort 1</li>
                         <li>Standort 2</li>
                         <li>Standort 3</li>
                     </ul>
-                    <div class="button-container">
-                        <button id="logoutID" type="logout">Logout </button>
-                        <button type="add">Add</button>
-                    </div>
+                    <button id="addID" type="add">Add</button>
                 </div>
+            </div>
+            <div class="logout-container">
+                <button id="logoutID" type="logout">Logout </button>
+            </div>
         </div>
 
         <br>
@@ -79,7 +80,7 @@
             <input type="text" id="streetID" name="street" required/>
            
             <label for="zip">Postleitzahl: </label>
-            <input type="text" id="zipID" name="zip" pattern="[0-9]{5}" title="Bitte geben Sie eine fünfstellige Ziffer ein">
+            <input type="number" id="zipID" name="zip" pattern="[0-9]{5}" title="Bitte geben Sie eine fünfstellige Ziffer ein">
            
             <label for="city">Stadt: </label>
             <input type="text" id="cityID" name="city" required/>
@@ -91,10 +92,10 @@
                 </select>
             
             <label for="lat">LAT: </label>
-            <input type="text" id="latID" name="lat">
+            <input type="number" id="latID" name="lat">
            
             <label for="lon">LON: </label>
-            <input type="text" id="lonID" name="lon">
+            <input type="number" id="lonID" name="lon">
             <br/>
             <br/>
             
