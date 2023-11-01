@@ -63,8 +63,8 @@
     padding-left: 40%;
     padding-top: 5%;
     margin-top: 50px;
-    
-    
+    z-index: 1; /* dient als stapelreihenfolge fest, 
+                    zuerst kommt die map, dann die Popups*/
 }
 
 /* Das gehört zu den Eigenschaften der Liste */
@@ -114,12 +114,70 @@ button#addID {
 h1 {
     text-align: center;
 }
-/* gehört zum Menue 
-#navigat*/
+
+/* gehört zum Menue */
+#navigationListe{
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 40px; 
+    z-index: 2; /* nächstes Stapelreihenfolge 2 */
+}
+
+.dreierStriche {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.line {
+    width: 30px; 
+    height: 3px; 
+    background-color: #000;
+    margin: 3px 0;
+}
+
+/* Hier werden alle Listen ausgegeben */
+.listenMenue {
+    position: absolute;
+    top:50%; /* Wo werden standorte angezeigt?*/
+    display: none; 
+    height: 200px; 
+    width: 200px;  
+    font-size: 16px;
+    border: 1px solid #151111;
+    z-index: 3; /* nächstes Stapelreihenfolge 3 */
+
+}
+
+/* Hier wird das angezeigt wenn man mit der Maus rüber schwebt, über das Menue*/
+#navigationListe:hover .listenMenue {
+    display: block; 
+}
+
+/* ungeordenete Liste und listenelemente im Listen-popup für die Trennlinie (der Standorte )*/
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+/*Damit das letze Element entfernt wird bzw der Strich*/
+li:last-child {
+    border-bottom: none;
+}
+
 
 footer {
     text-align: center;
 }
+
+
 
 
 /************************************************** ADD SCREEN */
