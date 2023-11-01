@@ -1,0 +1,233 @@
+
+/******************************************** LOGIN SCREEEN ***********************************************/
+
+/* Das gehört zu den Eigenschaften des Login-Screen */
+.login-container {
+    display: block;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background:linear-gradient(rgba(140, 140, 140, 0.7), rgba(0, 0, 0, 0.7)), url('natur.jpg') ;
+    background-position: center;
+    background-size: cover;
+  
+}
+
+.login-container form {
+    display: inline-block;
+    text-align: center;
+    margin-top: 50px;
+    margin: 0,auto;
+ 
+    border: 1px solid #87878784;
+    /* zum blushen zum verschwommen machne*/
+    backdrop-filter: blur(10px);
+    
+    background-position: center;
+    background-size: cover;
+    color: white; /*  TEXT hintergrund */ 
+    
+
+
+    /* background-color: rgb(237, 237, 237); */
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+}
+
+.login-container button {
+    padding: 5px;
+    text-align: center;
+    font-size: 12px;
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.login-container h1, p {
+    color: white;
+}
+
+
+
+
+
+
+/******************************************+ MAIN SCREEN *****************************************/
+
+/* Das gehört zu den Eigenschaften der Map */
+.main-container .map {
+    width: auto;
+    height: 500px;
+    padding-left: 40%;
+    padding-top: 5%;
+    margin-top: 50px;
+    
+    
+}
+
+/* Das gehört zu den Eigenschaften der Liste */
+.main-container .list {
+    position:static;
+    padding-top: 50px;
+    padding-left: 20px;
+    margin-right: 10px;
+    margin-top: 80px;
+    margin-bottom: 100px;
+    width: 400px;
+    height: 600px;
+    text-align: center;
+
+    border: 1px solid #9fb39084;
+    background-color: rgb(238, 238, 238);
+    border-radius: 15px;
+    padding: 20px;
+
+}
+
+button#addID {
+    margin-top: 150%;
+    margin-left: 85%;
+    padding: 9px;
+    font-size: 15px;
+}
+
+.main-container button#logoutID {
+    font-size: 12px;
+}
+
+.mapUndStandort {
+    display: flex;
+    flex-direction: row;
+    border: #87878784;
+    border-radius: 15px;
+}
+
+.logout-container {
+    margin-right: 650px;
+    margin-top: 700px;
+    display: flex;
+    flex-direction:column;
+}
+
+h1 {
+    text-align: center;
+}
+/* gehört zum Menue 
+#navigat*/
+
+footer {
+    text-align: center;
+}
+
+
+/************************************************** ADD SCREEN */
+
+.add-container form {
+    text-align: center;
+    margin: 0 auto;
+
+     /*mini rahmen*/
+
+     background:url('natur.jpg') ;
+     padding: 20px;
+     border-radius: 5px;
+     width: 400px;
+    
+}
+.add-container label {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.add-container input, select {
+    width: 200px;
+    padding: 5px;
+    font-size: 12px;
+}
+
+.add-container textarea {
+    width: 200px;
+    height: 80px;
+    padding: 10px;
+    font-size: 12px;
+}
+
+.add-container input#zipID, input#latID, input#lonID {
+    width: 110px;
+}
+
+.add-container h3 {
+    text-align: center;
+}
+
+.add-container .button-container-add {
+    text-align: center;
+
+}
+
+.add-container button {
+    padding: 5px;
+    font-size: 15px;
+    margin-top: 25px;
+    margin-left: 20px;
+    margin-right: 45px;
+}
+
+/***************************** UPDATE DELETE SCREEN */
+
+.update-container form {
+    text-align: center;
+    
+    margin: 0 auto;
+
+     /*mini rahmen*/
+
+     background:url('natur.jpg') ;
+     padding: 30px;
+     border-radius: 5px;
+     width: 400px;
+    
+}
+.update-container label {
+    display: block;
+    margin-top: 15px;
+    margin-left: 10px;
+}
+.update-container input, select {
+    width: 250px;
+    padding: 5px;
+    font-size: 12px;
+}
+
+.update-container textarea {
+    width: 250px;
+    height: 80px;
+    padding: 10px;
+    font-size: 12px;
+}
+
+.update-container input#zipID, input#latID, input#lonID {
+    width: 110px;
+}
+
+.update-container h3 {
+    text-align: center;
+}
+
+.update-container button {
+    padding: 5px;
+    text-align: center;
+    font-size: 15px;
+    margin-top: 25px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#deleteID {
+    background-color: #ff1717;
+    color: white;
+}
