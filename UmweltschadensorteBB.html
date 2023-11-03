@@ -20,20 +20,22 @@
     <!----------------------------- LOGIN SCREEN ------------------------------------------->
 
     <div class="login-container">
-        <h1>UmweltschadensorteBB</h1>
-        <p>Herzlichen Willkommen! Bitte identifiziere dich ^^</p>
-
-        <hr />
-
+        <h1>Umwelt<span class="schaden">schaden</span>sorteBB</h1>
+        <h2>Herzlich Willkommen</h2>
+        <p>Diese Website dient dem Zweck 
+            <br>umweltschädliche Standorte innerhalb Berlins<br> und 
+            Brandenburgs zu lokalisiern und zu dokumentieren.</p>
+        <br>
+        <br>
         <form action="/survey" method="GET">
             <h3><strong>Anmeldeformular</strong></h3>
             <br />
-            <label for="username">Benutzername: </label>
-            <input type="text" id="usernameID" name="username" required />
+            <!--<label for="username">Benutzername: </label>-->
+            <input type="text" id="usernameID" name="username" placeholder="Benutzername" required />
             <br />
             <br />
-            <label for="password">Passwort: </label>
-            <input type="password" id="passwordID" name="password" required />
+            <!--<label for="password">Passwort: </label>-->
+            <input type="password" id="passwordID" name="password" placeholder="Passwort" required />
             <br />
             <br />
             <button type="login">Anmelden</button>
