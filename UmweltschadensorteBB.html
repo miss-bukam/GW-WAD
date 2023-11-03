@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>UmweltschadensorteBB</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <!-- Gehört zum leaflet also der Karte -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/m+ZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+</head>
+
+<body>
+
+
+    <!----------------------------- LOGIN SCREEN ------------------------------------------->
+
+    <div class="login-container">
+        <h1>UmweltschadensorteBB</h1>
+        <p>Herzlichen Willkommen! Bitte identifiziere dich ^^</p>
+
+        <hr />
+
+        <form action="/survey" method="GET">
+            <h3><strong>Anmeldeformular</strong></h3>
+            <br />
+            <label for="username">Benutzername: </label>
+            <input type="text" id="usernameID" name="username" required />
+            <br />
+            <br />
+            <label for="password">Passwort: </label>
+            <input type="password" id="passwordID" name="password" required />
+            <br />
+            <br />
+            <button type="login">Anmelden</button>
+        </form>
+    </div>
+
+    <hr />
+
+
+    <!------------------------- MAIN SCREEN ------------------------------------------>
+
+    <h1> Willkommen bei UmweltschadensorteBB!</h1>
+
+    <div id="navigationListe">
+        <!--Hier kommen die drei Striche raus-->
+        <div class="dreierStriche">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+
+        <div class="listenMenue">
+            <ul>
+                <li>Standort 1</li>
+                <li>Standort 2</li>
+                <li>Standort 3</li>
+            </ul>
+            <div class="button-container">
+                <button id="logoutID" type="logout">Logout </button>
+                <button type="add">Add</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="map" id="karte"></div>
+        <script>
+
+            //ICON einfuegen 
+            var leafIcon = L.icon({
+                iconUrl: 'http://leafletjs.com/examples/custom-icons/leaf-green.png',
+                shadowUrl: 'http://leafletjs.com/examples/custom-icons/leaf-shadow.png'
+            });
+
+
+            //KARTE einfuegen 
+            var meineKarte = L.map('karte').setView([51.1657, 10.4515], 6);
+            L.tileLayer('https://tile.openstreetmap.de/{z}/{x}/{y}.png', {
+                maxZoom: 100,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(meineKarte);
+
+            //Setzt ein Punkt auf die Karte (mit dem Icon)
+            var marker = L.marker([52.487667277309974, 13.3116531306552], { icon: leafIcon }).addTo(meineKarte);  //Setzt Punkt in die Liste 
+            marker.bindPopup("Vattenfall Wärme Berlin AG, Heizkraftwerk Wilmersdorf").openPopup(); //Öffntet ein Pop-up sobald mal auf den Punkt drückt
+
+
+        </script>
+    </div>
+
+    <br>
+    <br>
+
+    <footer style="padding: 12px 12px;">
+        <a href="https://www.htw-berlin.de/impressum/" target="_blank" style="font-size: 12px">Impressum</a>
+        &thinsp; | &thinsp;
+        <a href="https://www.htw-berlin.de/datenschutz/" target="_blank" style="font-size: 12px">Datenschutz</a>
+    </footer>
+    <hr />
+
+
+    <!---------------------------------- ADD SCREEN ------------------------------------------>
+
+    <div class="add-container">
+
+        <h3>Füge einen Standort hinzu! </h3>
+
+        <form>
+            <br />
+            <label for="name">Name: </label>
+            <input type="text" id="nameID" name="name" required />
+
+            <label for="describtion">Beschreibung: </label>
+            <textarea type="text" id="describtionID" name="describtion"></textarea>
+
+            <label for="street">Straße: </label>
+            <input type="text" id="streetID" name="street" required />
+
+            <label for="zip">Postleitzahl: </label>
+            <input type="text" id="zipID" name="zip" pattern="[0-9]{5}"
+                title="Bitte geben Sie eine fünfstellige Ziffer ein">
+
+            <label for="city">Stadt: </label>
+            <input type="text" id="cityID" name="city" required />
+
+            <label for="bundesland">Bundesland: </label>
+            <select id="cityID" name="city">
+                <option value="Berlin">Berlin</option>
+                <option value="Brandenburg">Brandenburg</option>
+            </select>
+
+            <label for="lat">LAT: </label>
+            <input type="text" id="latID" name="lat">
+
+            <label for="lon">LON: </label>
+            <input type="text" id="lonID" name="lon">
+            <br />
+            <br />
+
+            <div class="button-container-add">
+                <button type="cancel">Abbrechen</button>
+                <button id="plusID" type="add">Hinzufügen</button>
+            </div>
+        </form>
+    </div>
+    <br>
+    <br>
+    <hr />
+
+    <!------------------------------- UPDATE / DELETE SCREEN ------------------------------------------>
+
+    <div class="update-container">
+        <h3>Aktualisiere einen Standort! </h3>
+
+        <form>
+            <br />
+            <label for="name">Name: </label>
+            <input type="text" id="nameID" name="name" required />
+
+            <label for="describtion">Beschreibung: </label>
+            <textarea type="text" id="describtionID" name="describtion"></textarea>
+
+            <label for="street">Straße: </label>
+            <input type="text" id="streetID" name="street" required>
+
+            <label for="zip">Postleitzahl: </label>
+            <input type="text" id="zipID" name="zip" pattern="[0-9]{5}"
+                title="Bitte geben Sie eine fünfstellige Ziffer ein">
+
+            <label for="city">Stadt: </label>
+            <input type="text" id="cityID" name="city" required>
+
+            <label for="bundesland">Bundesland: </label>
+            <select id="cityID" name="city">
+                <option value="Berlin">Berlin</option>
+                <option value="Brandenburg">Brandenburg</option>
+            </select>
+
+            <label for="lat">LAT: </label>
+            <input type="text" id="latID" name="lat">
+
+            <label for="lon">LON: </label>
+            <input type="text" id="lonID" name="lon">
+            <br />
+            <br />
+            <button type="cancel">Abbrechen</button>
+            <button id="deleteID" type="delete">Löschen</button>
+            <button type="update">Aktualisieren</button>
+        </form>
+    </div>
+
+</body>
+
+<!-- Gehört zur Map -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+</html>

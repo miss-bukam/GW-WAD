@@ -1,4 +1,3 @@
-
 /******************************************** LOGIN SCREEEN ***********************************************/
 
 /* Das gehört zu den Eigenschaften des Login-Screen */
@@ -8,32 +7,47 @@
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    background:linear-gradient(rgba(140, 140, 140, 0.7), rgba(0, 0, 0, 0.7)), url('natur.jpg') ;
+    background: linear-gradient(rgba(140, 140, 140, 0.7), rgba(0, 0, 0, 0.7)), url('fabrik.jpeg');
     background-position: center;
     background-size: cover;
-  
+
 }
 
 .login-container form {
     display: inline-block;
     text-align: center;
-    margin-top: 50px;
-    margin: 0,auto;
- 
-    border: 1px solid #87878784;
+    margin-top: 20px;
+    margin: 0 auto;
+
+    border: 1px solid transparent;
     /* zum blushen zum verschwommen machne*/
     backdrop-filter: blur(10px);
-    
     background-position: center;
     background-size: cover;
-    color: white; /*  TEXT hintergrund */ 
-    
+    color: white;
+    /*  TEXT hintergrund */
+
 
 
     /* background-color: rgb(237, 237, 237); */
     padding: 20px;
     border-radius: 5px;
+    border-color: rgba(93, 93, 93, 0.485);
     width: 300px;
+}
+
+.login-container label {
+    margin-right: 5px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.login-container input {
+    padding: 5px;
+    font-size: 12px;
+    width: 150px;
+    
 }
 
 .login-container button {
@@ -45,7 +59,8 @@
     margin-right: 10px;
 }
 
-.login-container h1, p {
+.login-container h1,
+p {
     color: white;
 }
 
@@ -59,17 +74,18 @@
 /* Das gehört zu den Eigenschaften der Map */
 .main-container .map {
     width: auto;
-    height: 500px;
+    height: 600px;
     padding-left: 40%;
-    padding-top: 5%;
+    padding-top: 15px;
     margin-top: 50px;
-    z-index: 1; /* dient als stapelreihenfolge fest, 
-                    zuerst kommt die map, dann die Popups*/
+    z-index: 1;
+    /* dient als stapelreihenfolge fest, 
+    zuerst kommt die map, dann die Popups*/
 }
 
 /* Das gehört zu den Eigenschaften der Liste */
 .main-container .list {
-    position:static;
+    position: static;
     padding-top: 50px;
     padding-left: 20px;
     margin-right: 10px;
@@ -108,7 +124,7 @@ button#addID {
     margin-right: 650px;
     margin-top: 700px;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
 }
 
 h1 {
@@ -116,13 +132,14 @@ h1 {
 }
 
 /* gehört zum Menue */
-#navigationListe{
+#navigationListe {
     position: relative;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    height: 40px; 
-    z-index: 2; /* nächstes Stapelreihenfolge 2 */
+    height: 40px;
+    z-index: 2;
+    /* nächstes Stapelreihenfolge 2 */
 }
 
 .dreierStriche {
@@ -132,8 +149,8 @@ h1 {
 }
 
 .line {
-    width: 30px; 
-    height: 3px; 
+    width: 30px;
+    height: 3px;
     background-color: #000;
     margin: 3px 0;
 }
@@ -141,19 +158,21 @@ h1 {
 /* Hier werden alle Listen ausgegeben */
 .listenMenue {
     position: absolute;
-    top:50%; /* Wo werden standorte angezeigt?*/
-    display: none; 
-    height: 200px; 
-    width: 200px;  
+    top: 50%;
+    /* Wo werden standorte angezeigt?*/
+    display: none;
+    height: 200px;
+    width: 200px;
     font-size: 16px;
     border: 1px solid #151111;
-    z-index: 3; /* nächstes Stapelreihenfolge 3 */
+    z-index: 3;
+    /* nächstes Stapelreihenfolge 3 */
 
 }
 
 /* Hier wird das angezeigt wenn man mit der Maus rüber schwebt, über das Menue*/
 #navigationListe:hover .listenMenue {
-    display: block; 
+    display: block;
 }
 
 /* ungeordenete Liste und listenelemente im Listen-popup für die Trennlinie (der Standorte )*/
@@ -186,35 +205,41 @@ footer {
     text-align: center;
     margin: 0 auto;
 
-     /*mini rahmen*/
+    /*mini rahmen*/
 
-     background:url('natur.jpg') ;
-     padding: 20px;
-     border-radius: 5px;
-     width: 400px;
-    
+    background: linear-gradient(rgba(140, 140, 140, 0.7), rgba(0, 0, 0, 0.7)),url('fabrik.jpeg');
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 5px;
+    width: 400px;
+
 }
+
 .add-container label {
     display: block;
-    text-align: center;
-    margin-top: 10px;
+    margin-top: 15px;
+    margin-bottom: 7px;
     margin-left: 10px;
+    color: white;
 }
 
-.add-container input, select {
+.add-container input,
+select {
     width: 200px;
     padding: 5px;
     font-size: 12px;
 }
 
 .add-container textarea {
-    width: 200px;
+    width: 250px;
     height: 80px;
     padding: 10px;
     font-size: 12px;
 }
 
-.add-container input#zipID, input#latID, input#lonID {
+.add-container input#zipID,
+input#latID,
+input#lonID {
     width: 110px;
 }
 
@@ -222,41 +247,47 @@ footer {
     text-align: center;
 }
 
-.add-container .button-container-add {
+/*.add-container .button-container-add {
     text-align: center;
 
-}
+}*/
 
 .add-container button {
     padding: 5px;
+    text-align: center;
     font-size: 15px;
     margin-top: 25px;
-    margin-left: 20px;
-    margin-right: 45px;
+    margin-left: 25px;
+    margin-right: 25px;
 }
 
 /***************************** UPDATE DELETE SCREEN */
 
 .update-container form {
     text-align: center;
-    
     margin: 0 auto;
 
-     /*mini rahmen*/
+    /*mini rahmen*/
 
-     background:url('natur.jpg') ;
-     padding: 30px;
-     border-radius: 5px;
-     width: 400px;
-    
+    background: linear-gradient(rgba(140, 140, 140, 0.7), rgba(0, 0, 0, 0.7)),url('fabrik.jpeg');
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 5px;
+    width: 400px;
+
 }
+
 .update-container label {
     display: block;
     margin-top: 15px;
+    margin-bottom: 7px;
     margin-left: 10px;
+    color: white;
 }
-.update-container input, select {
-    width: 250px;
+
+.update-container input,
+select {
+    width: 200px;
     padding: 5px;
     font-size: 12px;
 }
@@ -268,7 +299,9 @@ footer {
     font-size: 12px;
 }
 
-.update-container input#zipID, input#latID, input#lonID {
+.update-container input#zipID,
+input#latID,
+input#lonID {
     width: 110px;
 }
 
