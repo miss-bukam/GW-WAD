@@ -33,9 +33,11 @@
 
     /* background-color: rgb(237, 237, 237); */
     padding: 20px;
-    border-radius: 10px;
-    border-color: rgba(255, 255, 255, 0.743);
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.801);
     width: 300px;
+    box-shadow: 3px 3px 4px rgba(0.5, 0.5, 0.5, 0.5);
+
 }
 
 /*.login-container label {
@@ -47,21 +49,32 @@
 
 .login-container input {
     padding: 10px;
+    padding-left: 15px;
     font-size: 15px;
     width: 150px;
-    border-radius: 10px;
+    border-radius: 20px;
+    border-color: transparent;
+    box-shadow: 0px 1px 2px rgba(0.5, 0, 0, 0.5);
+}
+
+input::placeholder {
+    color: #c3c3c3;
 }
 
 .login-container button {
-    padding: 6px;
+    padding: 10px;
     text-align: center;
+    width: 180px;
     font-size: 13px;
     margin-top: 10px;
     margin-bottom: 5px;
     margin-left: 10px;
     margin-right: 10px;
     border-radius: 20px;
-    background-color: white;
+    background-color: #e2755c;
+    color: white;
+    border-color: transparent;
+    letter-spacing: 0.5px;
 }
 
 .login-container h1,h2, p {
@@ -73,15 +86,16 @@
     font-size: 70px;
     letter-spacing: 5px;
     font-family: Arial, Helvetica, sans-serif;
+    text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
 }
 
 .login-container p {
     letter-spacing: 2px;
-    font-size: 20px;
+    font-size: 25px;
 }
 
 .login-container h2 {
-    font-size: 28px;
+    font-size: 30px;
     letter-spacing: 1px;
 }
 
@@ -89,21 +103,17 @@
     letter-spacing: 3px;
     font-size: 20px;
     color: black;
-    font-family:Arial, Helvetica, sans-serif
+    font-family:Arial, Helvetica, sans-serif;
 }
 
 .login-container h2, p {
     text-align: center;
     border: 1px solid white;
-    background-color: rgba(255, 255, 255, 0.743);
+    background-color: rgba(255, 255, 255, 0.801);
     width: 100%;
     padding: 12px;
     color: black;
     margin: 6px;
-}
-
-.login-container .schaden {
-    color: #dec0c0;
 }
 
 
@@ -242,15 +252,13 @@ footer {
 .add-container form {
     text-align: center;
     margin: 0 auto;
-
     /*mini rahmen*/
-
-    background: linear-gradient(rgba(140, 140, 140, 0.7), rgba(0, 0, 0, 0.7)),url('fabrik.jpeg');
+    background-color: rgb(237, 182, 161);
+    /*background: linear-gradient(rgba(140, 140, 140, 0.7), rgba(0, 0, 0, 0.7)),url('fabrik.jpeg');*/
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
     border-radius: 5px;
     width: 400px;
-
 }
 
 .add-container label {
@@ -258,15 +266,19 @@ footer {
     margin-top: 15px;
     margin-bottom: 7px;
     margin-left: 10px;
-    color: white;
+    color: black;
 }
 
 .add-container input,
 select {
     width: 200px;
-    padding: 5px;
-    font-size: 12px;
-    border-radius: 10px;
+    padding: 10px;
+    padding-left: 15px;
+    font-size: 15px;
+    border-radius: 20px;
+    border-color: transparent;
+    box-shadow: 0px 1px 2px rgba(0.5, 0, 0, 0.5);
+    font-family: Arial, Helvetica, sans-serif;
 
 }
 
@@ -274,8 +286,10 @@ select {
     width: 250px;
     height: 80px;
     padding: 10px;
-    font-size: 12px;
-    border-radius: 10px;
+    padding-left: 15px;
+    font-size: 15px;
+    border-radius: 20px;
+    font-family: Arial, Helvetica, sans-serif;
 
 }
 
@@ -289,18 +303,23 @@ input#lonID {
     text-align: center;
 }
 
-/*.add-container .button-container-add {
-    text-align: center;
-
-}*/
 
 .add-container button {
-    padding: 5px;
+    padding: 10px;
     text-align: center;
     font-size: 15px;
     margin-top: 25px;
     margin-left: 25px;
     margin-right: 25px;
+    border-radius: 20px;
+    background-color: #e2755c;
+    color: white;
+    border-color: transparent;
+    letter-spacing: 0.5px;
+}
+
+.add-container #cancelID {
+    background-color: rgb(134, 134, 134);
 }
 
 /***************************** UPDATE DELETE SCREEN */
@@ -325,22 +344,30 @@ input#lonID {
     margin-bottom: 7px;
     margin-left: 10px;
     color: white;
+
 }
 
 .update-container input,
 select {
     width: 200px;
-    padding: 5px;
-    font-size: 12px;
-    border-radius: 10px;
+    padding: 10px;
+    padding-left: 15px;
+    font-size: 15px;
+    border-radius: 20px;
+    border-color: transparent;
+    box-shadow: 0px 1px 2px rgba(0.5, 0, 0, 0.5);
+    font-family: Arial, Helvetica, sans-serif;
+
 }
 
 .update-container textarea {
     width: 250px;
     height: 80px;
     padding: 10px;
-    font-size: 12px;
-    border-radius: 10px;
+    padding-left: 15px;
+    font-size: 15px;
+    border-radius: 20px;
+    font-family: Arial, Helvetica, sans-serif;
 
 }
 
@@ -355,15 +382,23 @@ input#lonID {
 }
 
 .update-container button {
-    padding: 5px;
+    padding: 10px;
     text-align: center;
     font-size: 15px;
     margin-top: 25px;
     margin-left: 10px;
     margin-right: 10px;
+    border-radius: 20px;
+    background-color: rgb(134, 134, 134);
+    color: white;
+    border-color: transparent;
+    letter-spacing: 0.5px;
 }
 
 #deleteID {
-    background-color: #ff1717;
-    color: white;
+    background-color: #af3a3a;
+}
+
+#updateID {
+    background-color:rgb(77, 122, 77)
 }
