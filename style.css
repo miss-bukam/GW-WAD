@@ -119,38 +119,17 @@ input::placeholder {
 
 /******************************************+ MAIN SCREEN *****************************************/
 
-/* Das gehört zu den Eigenschaften der Map */
-.main-container .map {
-    width: 70%;
-    height: 600px;
-    padding-left: 10px; 
-    padding-top: 15px;
-    margin-top: 10px;
-    z-index: 1;/* dient als stapelreihenfolge fest,zuerst kommt die map, dann die Popups*/
-}
-
-.listenMenue .button-container button#addID {
-    margin-top: 68%;
-    margin-left: 68%;
-    padding: 5px;
-    font-size: 12px;
-}
-
-.listenMenue .button-container button#logoutID {
-    padding: 5px;
-    font-size: 12px;
-    margin-top: 5px;
-    margin-left: 120px;
-}
-
+/*Begrüßungssheading*/
 h1 {
     text-align: center;
 }
 
+/*Das Heading für die => Standorte in */
 .listenMenue h3 {
     text-align: center;
     color: #000;
 } 
+
 
 /* Es ist der Container für die Dreier Striche und die Liste der Standorte */
 #navigationListe {
@@ -186,7 +165,8 @@ h1 {
 /* Hier werden alle Standorte ausgegeben, nach dem ich auf das Dreier-Zeichen rüberfahre */
 .listenMenue {
     position: absolute;
-    top:50%; /* Wo werden standorte angezeigt?*/
+    top: 20px;
+    right: 15px; /* Wo werden standorteListe neben der Dreierstriche angezeigt?*/
     display: none; 
     height:500px; 
     width: 300px;  
@@ -205,15 +185,15 @@ h1 {
     margin-right: 50px;
 } 
 
+/*Eine subDivison für die Beschreibungen der Standorte*/
 .AllgemeineStandortBeschreibung{
     display: none;
 }
 
+/*Anzeige in Listen Form der Beschreibung*/
 li:hover .AllgemeineStandortBeschreibung{
-    display: block;
-    
+    display: block;   
 }
-
 
 /* ungeordenete Liste und listenelemente im Listen-popup für die Trennlinie (der Standorte )*/
 ul {
@@ -227,6 +207,33 @@ li {
     border-bottom: 1px solid #ccc;
     font-size: 12px;
 }
+
+/*Der login Button*/
+.listenMenue .button-container button#addID {
+    margin-top: 68%;
+    margin-left: 68%;
+    padding: 5px;
+    font-size: 12px;
+}
+
+/*Der logout Button*/
+.listenMenue .button-container button#logoutID {
+    padding: 5px;
+    font-size: 12px;
+    margin-top: 5px;
+    margin-left: 120px;
+}
+
+/* Das gehört zu den Eigenschaften der Map */
+.main-container .map {
+    width: 70%;
+    height: 600px;
+    padding-left: 10px; 
+    padding-top: 15px;
+    margin-top: 10px;
+    z-index: 1;/* dient als stapelreihenfolge fest,zuerst kommt die map, dann die Popups*/
+}
+
 
 footer {
     text-align: center;
