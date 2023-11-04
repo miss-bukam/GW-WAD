@@ -51,22 +51,40 @@
 
     <div id="navigationListe">
         <!--Hier kommen die drei Striche raus-->
-        <div class="dreierStriche">
+        <div class="dreierStriche" id="dreierStriche">
             <div class="line"></div>
             <div class="line"></div>
             <div class="line"></div>
-        </div>
-
+       
+        <!--Hier sollen die Standorte angezeigt werden-->
         <div class="listenMenue">
+            <h3>Standorte</h3>
             <ul>
-                <li>Standort 1</li>
-                <li>Standort 2</li>
-                <li>Standort 3</li>
+                <li>Vattenfall Wärme Berlin AG
+                    <div class="AllgemeineStandortBeschreibung">
+                        <p class="Adresse">Adresse: Kurfürstendamm 143, 10709 Berlin</p>
+                        <p class="Beschreibung">Beschreibung: Heizkraftwerk</p>
+                    </div>
+                </li>
+                <li>Standort 2
+                    <div class="AllgemeineStandortBeschreibung">
+                        <p class="Adresse">Adresse: </p>
+                        <p class="Beschreibung">Beschreibung:  </p>
+                    </div>
+                </li>
+                <li>Standort 3
+                    <div class="AllgemeineStandortBeschreibung">
+                        <p class="Adresse">Adresse: </p>
+                        <p class="Beschreibung">Beschreibung: </p>
+                    </div>
+                </li>
             </ul>
             <div class="button-container">
                 <button id="logoutID" type="logout">Logout </button>
                 <button type="add">Add</button>
             </div>
+        </div>
+        </div>
         </div>
     </div>
 
@@ -92,7 +110,7 @@
             var marker = L.marker([52.487667277309974, 13.3116531306552], { icon: leafIcon }).addTo(meineKarte);  //Setzt Punkt in die Liste 
             marker.bindPopup("Vattenfall Wärme Berlin AG, Heizkraftwerk Wilmersdorf").openPopup(); //Öffntet ein Pop-up sobald mal auf den Punkt drückt
 
-
+    
         </script>
     </div>
 
