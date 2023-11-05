@@ -48,16 +48,10 @@
     <!------------------------- MAIN SCREEN ------------------------------------------>
 
     <h1> Willkommen bei UmweltschadensorteBB!</h1>
-
-    <div id="navigationListe">
-        <!--Hier kommen die drei Striche raus-->
-        <div class="dreierStriche" id="dreierStriche">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-       
+   <div class="main-container">
+    <div id="ListMenueParent">
         <!--Hier sollen die Standorte angezeigt werden-->
-        <div class="listenMenue">
+        <div class="listenMenue" id="listeMenueID">
             <h3>Standorte</h3>
             <ul>
                 <li>Vattenfall Wärme Berlin AG
@@ -84,12 +78,17 @@
                 <button type="add">Add</button>
             </div>
         </div>
-        </div>
-        </div>
     </div>
+         <!--Hier kommen die drei Striche raus-->
+         <div class="dreierStriche" id="dreierStriche" onclick="toggleListMenue()">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
 
-    <div class="main-container">
+        
         <div class="map" id="karte"></div>
+    </div>
         <script>
 
             //ICON einfuegen 
@@ -110,7 +109,30 @@
             var marker = L.marker([52.487667277309974, 13.3116531306552], { icon: leafIcon }).addTo(meineKarte);  //Setzt Punkt in die Liste 
             marker.bindPopup("Vattenfall Wärme Berlin AG, Heizkraftwerk Wilmersdorf").openPopup(); //Öffntet ein Pop-up sobald mal auf den Punkt drückt
 
+            //Methoden Funktion für das ein und Ausblenden der Standort Liste
+            function toggleListMenue() {
+                const ListmenueVar = document.getElementById("listeMenueID") /* gibt das Elemnt als Objekt wieder, dieses objekt wird in der Variable ListMenueVar gespeichert */
+               /*  console.log("Hello")  /*console = Ausgabe auf der Konsole im Tool */
+               /* console.log(ListmenueVar)   */ /*Hier wird das gespeicherte Objekt auf der Konsole ausgeben */ 
+               
+                /* Kurz was passiert hier=?
+                    Hier wird geschaut ob das Objekt ListmenueVar die Klasse "versteckt" enthält
+                    nun schau ich, anfangs enthält das Objekt ListmenueVar die KLasse "versteckt" nicht,
+                    sodass ich in die Else- Bedingung springe und "versteckt" hinzufüge. ( Im CSS ist die Klasse versteckt als display:none dargestellt )
+                    Nun enthält das Objekt die KLasse versteckt. Klicke ich nochmal auf die Dreierstriche 
+                    wiederhole ich den Vorgang mit der If bedingung. Das heißt die KLasse "versteckt" ist im Objekt ListmenueVAr enthalten.
+                    somit entferne ich die Klasse versteckt und die Liste wird angezeigt.
+
+                */
+                if(ListmenueVar.classList.contains("versteckt")) {
+                    ListmenueVar.classList.remove("versteckt")
+                }
+                else{
+                    ListmenueVar.classList.add("versteckt")     /* fügt div eine Klasse hinzu*/
+                }
+            }
     
+
         </script>
     </div>
 
