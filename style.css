@@ -76,6 +76,10 @@ input::placeholder {
     letter-spacing: 0.5px;
 }
 
+.login-container button:hover {
+    background-color: #ca6c57;
+}
+
 .login-container h1,h2, p {
     color: white;
 
@@ -131,8 +135,8 @@ h1 {
 
 /* Es ist der Container für die Dreier Striche und die Liste der Standorte */
 #navigationListe {
+    display:flex;
     position: relative;
-    display: flex;
     justify-content: flex-end;
     align-items: center;
     height: 10px;
@@ -142,7 +146,9 @@ h1 {
 
 /* Hier sind Eigenschaften der DreierLinien für das Pop-Up*/
 .dreierStriche {
+    position: static;
     cursor: pointer;
+<<<<<<< HEAD
     display: flex;
     flex-direction: column; /* Elemente werden von oben nacch unten angeordnet*/
     top: 50px;
@@ -150,6 +156,12 @@ h1 {
     padding: 5px 5px;
     z-index: 2;
     position: relative;
+=======
+    flex-direction: column; /* Elmente werden von oben nacch unten angeordnet*/
+    padding: 5px 5px;
+    margin-top: 100px;
+    margin-right: 370px;
+>>>>>>> 11a976cf598055e463fae19038db2678da89e71b
 }
 
 /* Hier sind die Eigenschaften der Linien der Dreierstriche*/
@@ -164,7 +176,7 @@ h1 {
 
 /* Hier werden alle Standorte ausgegeben, nach dem ich auf das Dreier-Zeichen rüberfahre */
 .listenMenue {
-    position: absolute;
+    position:absolute;
     top: 20px;
     right: 15px; /* Wo werden standorteListe neben der Dreierstriche angezeigt?*/
     height:500px; 
@@ -233,6 +245,7 @@ li {
 
 /* Das gehört zu den Eigenschaften der Map */
 .main-container .map {
+
     width: 70%;
     height: 600px;
     padding-left: 10px; 
@@ -256,20 +269,22 @@ footer {
     text-align: center;
     margin: 0 auto;
     /*mini rahmen*/
-    background-color: rgb(237, 182, 161);
+    background-color: rgb(255, 217, 197);
     /*background: linear-gradient(rgba(140, 140, 140, 0.7), rgba(0, 0, 0, 0.7)),url('fabrik.jpeg');*/
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 20px;
     width: 400px;
 }
 
 .add-container label {
     display: block;
     margin-top: 15px;
-    margin-bottom: 7px;
+    margin-bottom: 5px;
     margin-left: 10px;
     color: black;
+    font-family: Arial, Helvetica, sans-serif;
+
 }
 
 .add-container input,
@@ -288,12 +303,14 @@ select {
 .add-container textarea {
     width: 250px;
     height: 80px;
-    padding: 10px;
-    padding-left: 15px;
+    padding: 17px;
+    padding-top: 10px;
+    padding-left: 20px;
     font-size: 15px;
-    border-radius: 20px;
+    border-radius: 40px;
     font-family: Arial, Helvetica, sans-serif;
-
+    border-color: transparent;
+    box-shadow: 0px 1px 2px rgba(0.5, 0, 0, 0.5);
 }
 
 .add-container input#zipID,
@@ -304,6 +321,8 @@ input#lonID {
 
 .add-container h3 {
     text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
 }
 
 
@@ -325,6 +344,14 @@ input#lonID {
     background-color: rgb(134, 134, 134);
 }
 
+.add-container #cancelID:hover {
+    background-color: rgb(125, 125, 125);
+}
+
+.add-container button:hover {
+    background-color: #ca6c57;
+}
+
 /***************************** UPDATE DELETE SCREEN */
 
 .update-container form {
@@ -336,7 +363,7 @@ input#lonID {
     background: linear-gradient(rgba(140, 140, 140, 0.7), rgba(0, 0, 0, 0.7)),url('fabrik.jpeg');
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 30px;
-    border-radius: 5px;
+    border-radius: 20px;
     width: 400px;
 
 }
@@ -344,9 +371,10 @@ input#lonID {
 .update-container label {
     display: block;
     margin-top: 15px;
-    margin-bottom: 7px;
+    margin-bottom: 5px;
     margin-left: 10px;
     color: white;
+    font-family: Arial, Helvetica, sans-serif;
 
 }
 
@@ -366,11 +394,14 @@ select {
 .update-container textarea {
     width: 250px;
     height: 80px;
-    padding: 10px;
-    padding-left: 15px;
+    padding: 17px;
+    padding-top: 10px;
+    padding-left: 20px;
     font-size: 15px;
-    border-radius: 20px;
+    border-radius: 40px;
     font-family: Arial, Helvetica, sans-serif;
+    border-color: transparent;
+    box-shadow: 0px 1px 2px rgba(0.5, 0, 0, 0.5);
 
 }
 
@@ -382,6 +413,9 @@ input#lonID {
 
 .update-container h3 {
     text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 20px;
 }
 
 .update-container button {
@@ -398,10 +432,22 @@ input#lonID {
     letter-spacing: 0.5px;
 }
 
+.update-container button:hover {
+    background-color: rgb(125, 125, 125);
+}
+
 #deleteID {
     background-color: #af3a3a;
 }
 
+#deleteID:hover {
+    background-color: #9f3535;
+}
+
 #updateID {
     background-color:rgb(77, 122, 77)
+}
+
+#updateID:hover {
+    background-color:rgb(71, 112, 71)
 }
