@@ -47,8 +47,10 @@
 
     <!------------------------- MAIN SCREEN ------------------------------------------>
 
-    <h1> Willkommen bei UmweltschadensorteBB!</h1>
-   <div class="main-container">
+    
+    <div class="main-container">
+        <h1> Willkommen bei UmweltschadensorteBB!</h1>
+        <p id="einleitung">Lokaliere ein Ort, das die Umwelt schadet direkt auf der Karte oder gebe die Informationen manuell ein</p>
     <div id="ListMenueParent">
         <!--Hier sollen die Standorte angezeigt werden-->
         <div class="listenMenue" id="listeMenueID">
@@ -74,8 +76,10 @@
                 </li>
             </ul>
             <div class="button-container">
-                <button id="logoutID" type="logout">Logout </button>
-                <button type="add">Add</button>
+                 <button id="addID" type="add">Hinzufügen</button>
+                 <hr/>
+                <button id="logoutID" type="logout">Abmelden </button>
+
             </div>
         </div>
     </div>
@@ -150,6 +154,8 @@
     <!---------------------------------- ADD SCREEN ------------------------------------------>
 
     <div class="add-container">
+        <br />
+        <br />
         <form>
             <h3>Füge einen Standort hinzu! </h3>
             <hr/>
@@ -188,6 +194,8 @@
                 <button id="plusID" type="add">Hinzufügen</button>
             </div>
         </form>
+        <br />
+        <br />
     </div>
     <br>
     <br>
@@ -196,6 +204,8 @@
     <!------------------------------- UPDATE / DELETE SCREEN ------------------------------------------>
 
     <div class="update-container">
+        <br />
+        <br />
         <form>
             <h3>Aktualisiere einen Standort! </h3>
             <hr />
@@ -232,6 +242,8 @@
             <button id="deleteID" type="delete">Löschen</button>
             <button id="updateID" type="update">Aktualisieren</button>
         </form>
+        <br />
+        <br />
     </div>
 
 </body>
