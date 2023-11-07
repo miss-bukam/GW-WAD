@@ -2,7 +2,7 @@
 
 /* Der ganze Login- Screen -> alle Eigenschaften*/
 .login-container {
-    display: flex;
+    display: grid;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -147,6 +147,7 @@ input::placeholder {
 
 /* Hier werden alle Standorte ausgegeben, nach dem ich auf das Dreier-Zeichen rüberfahre */
 .listenMenue {
+    
     position: absolute;
     top: 65px;
     left: 50px;

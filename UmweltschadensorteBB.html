@@ -67,7 +67,7 @@
                         <p class="Beschreibung">Beschreibung:  </p>
                     </div>
                 </li>
-                <li>Heizkraftwerk Moabit
+                <li>Müll Heizkraftwerk Moabit
                     <div class="AllgemeineStandortBeschreibung">
                         <p class="Adresse">Adresse: Friedrich-Krause-Ufer,13353 Berlin</p>
                         <p class="Beschreibung">Beschreibung:  Heizkraftwerk </p>
@@ -114,11 +114,11 @@
 
              //Setzt ein Punkt auf die Karte (mit dem Icon)
              var marker2 = L.marker([52.5374407951431,13.3472728336849], { icon: leafIcon }).addTo(meineKarte);  //Setzt Punkt in die Liste 
-            marker.bindPopup("Heizkraftwerk Moabit").openPopup(); //Öffntet ein Pop-up sobald mal auf den Punkt drückt
+            marker2.bindPopup("Heizkraftwerk Moabit").openPopup(); //Öffntet ein Pop-up sobald mal auf den Punkt drückt
 
              //Setzt ein Punkt auf die Karte (mit dem Icon)
-            var marker = L.marker([52.487667277309974, 13.3116531306552], { icon: leafIcon }).addTo(meineKarte);  //Setzt Punkt in die Liste 
-            marker.bindPopup("Vattenfall Wärme Berlin AG, Heizkraftwerk Wilmersdorf").openPopup(); //Öffntet ein Pop-up sobald mal auf den Punkt drückt
+            var marker3 = L.marker([52.487667277309974, 13.3116531306552], { icon: leafIcon }).addTo(meineKarte);  //Setzt Punkt in die Liste 
+            marker3.bindPopup("Vattenfall Wärme Berlin AG, Heizkraftwerk Wilmersdorf").openPopup(); //Öffntet ein Pop-up sobald mal auf den Punkt drückt
 
 
             //Methoden Funktion für das ein und Ausblenden der Standort Liste
