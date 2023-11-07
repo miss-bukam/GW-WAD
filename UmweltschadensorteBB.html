@@ -44,7 +44,6 @@
 
     <hr />
 
-
     <!------------------------- MAIN SCREEN ------------------------------------------>
 
     
@@ -62,16 +61,16 @@
                         <p class="Beschreibung">Beschreibung: Heizkraftwerk</p>
                     </div>
                 </li>
-                <li>Standort 2
+                <li>Müll Heizkraftwerk 
                     <div class="AllgemeineStandortBeschreibung">
-                        <p class="Adresse">Adresse: </p>
+                        <p class="Adresse">Adresse: Freiheit 24-25,13597 Berlin</p>
                         <p class="Beschreibung">Beschreibung:  </p>
                     </div>
                 </li>
-                <li>Standort 3
+                <li>Heizkraftwerk Moabit
                     <div class="AllgemeineStandortBeschreibung">
-                        <p class="Adresse">Adresse: </p>
-                        <p class="Beschreibung">Beschreibung: </p>
+                        <p class="Adresse">Adresse: Friedrich-Krause-Ufer,13353 Berlin</p>
+                        <p class="Beschreibung">Beschreibung:  Heizkraftwerk </p>
                     </div>
                 </li>
             </ul>
@@ -97,21 +96,30 @@
 
             //ICON einfuegen 
             var leafIcon = L.icon({
-                iconUrl: 'http://leafletjs.com/examples/custom-icons/leaf-green.png',
+                iconUrl: 'http://leafletjs.com/examples/custom-icons/leaf-red.png',
                 shadowUrl: 'http://leafletjs.com/examples/custom-icons/leaf-shadow.png'
             });
 
 
             //KARTE einfuegen 
-            var meineKarte = L.map('karte').setView([51.1657, 10.4515], 6);
+            var meineKarte = L.map('karte').setView([51.1657, 10.4515], 11);
             L.tileLayer('https://tile.openstreetmap.de/{z}/{x}/{y}.png', {
                 maxZoom: 100,
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(meineKarte);
 
             //Setzt ein Punkt auf die Karte (mit dem Icon)
+            var marker = L.marker([52.5295625,13.2383125], { icon: leafIcon }).addTo(meineKarte);  //Setzt Punkt in die Liste 
+            marker.bindPopup("Müll Heizkraftwerk").openPopup(); //Öffntet ein Pop-up sobald mal auf den Punkt drückt
+
+             //Setzt ein Punkt auf die Karte (mit dem Icon)
+             var marker2 = L.marker([52.5374407951431,13.3472728336849], { icon: leafIcon }).addTo(meineKarte);  //Setzt Punkt in die Liste 
+            marker.bindPopup("Heizkraftwerk Moabit").openPopup(); //Öffntet ein Pop-up sobald mal auf den Punkt drückt
+
+             //Setzt ein Punkt auf die Karte (mit dem Icon)
             var marker = L.marker([52.487667277309974, 13.3116531306552], { icon: leafIcon }).addTo(meineKarte);  //Setzt Punkt in die Liste 
             marker.bindPopup("Vattenfall Wärme Berlin AG, Heizkraftwerk Wilmersdorf").openPopup(); //Öffntet ein Pop-up sobald mal auf den Punkt drückt
+
 
             //Methoden Funktion für das ein und Ausblenden der Standort Liste
             function toggleListMenue() {
