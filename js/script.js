@@ -51,11 +51,16 @@ function toggleListMenue() {
 /** Hier werden Script für den Zweiten Beleg dargestellt */
 let angemeldet = false;
 
-
 const admina = {
     username: "admina", 
     password: "password",
     role: "admin"
+};
+
+const normalo = {
+    username: "normalo", 
+    password: "password",
+    role: "non-admin"
 };
 
 const initScreensAddEventHandlers = function () {
@@ -82,8 +87,8 @@ const loginEntered = document.getElementById("usernameID").value;
 const passwordEntered = document.getElementById("passwordID").value;
 
 // check, if they are correct
-if (admina.username === loginEntered &&
-    admina.password === passwordEntered) {
+if (admina.username === loginEntered && admina.password === passwordEntered 
+    || normalo.username == loginEntered && normalo.password == passwordEntered ) {
         // correct:
         angemeldet = true;
         hideOthersAndShowMap()
@@ -91,7 +96,8 @@ if (admina.username === loginEntered &&
         // incorrect:
     alert("Falscher Benutzername und Passwort! ");
     angemeldet = false;
-}    
+}  
+
 }
 
 function showLoginAndHideOthers () {

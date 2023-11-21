@@ -9,9 +9,7 @@
     <!-- Gehört zum leaflet also der Karte -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
        crossorigin="" />
-  
-      <!--  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/m+ZyoHS5obTRR9BMY="-->
-</head>
+  </head>
 
 <body>
 
@@ -26,7 +24,7 @@
             Brandenburgs zu lokalisiern und zu dokumentieren.</p>
         <br>
         <br>
-        <form action="/survey" method="GET">
+        <form id="loginForm">
             <h3><strong>Anmeldeformular</strong></h3>
             <br />
             <!--<label for="username">Benutzername: </label>-->
@@ -37,7 +35,7 @@
             <input type="password" id="passwordID" name="password" placeholder="Passwort" required />
             <br />
             <br />
-            <button type="login">Anmelden</button>
+            <button type="submit">Anmelden</button>
         </form>
     </div>
 
