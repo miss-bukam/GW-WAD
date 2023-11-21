@@ -4,14 +4,13 @@
 <head>
     <meta charset="utf-8">
     <title>UmweltschadensorteBB</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 
     <!-- Gehört zum leaflet also der Karte -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/m+ZyoHS5obTRR9BMY=" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
+       crossorigin="" />
+  
+      <!--  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/m+ZyoHS5obTRR9BMY="-->
 </head>
 
 <body>
@@ -19,7 +18,7 @@
 
     <!----------------------------- LOGIN SCREEN ------------------------------------------->
 
-    <div class="login-container">
+    <div class="login-container" id="loginScreen">
         <h1>UmweltschadensorteBB</h1>
         <h2>Herzlich Willkommen</h2>
         <p>Diese Website dient dem Zweck 
@@ -47,7 +46,7 @@
     <!------------------------- MAIN SCREEN ------------------------------------------>
 
     
-    <div class="main-container">
+    <div class="main-container" id="mapScreen">
         <h1> Willkommen bei UmweltschadensorteBB!</h1>
         <p id="einleitung">Lokaliere ein Ort, das die Umwelt schadet direkt auf der Karte oder gebe die Informationen manuell ein</p>
     <div id="ListMenueParent">
@@ -92,60 +91,7 @@
         
         <div class="map" id="karte"></div>
     </div>
-        <script>
-
-            //ICON einfuegen 
-            var leafIcon = L.icon({
-                iconUrl: 'http://leafletjs.com/examples/custom-icons/leaf-red.png',
-                shadowUrl: 'http://leafletjs.com/examples/custom-icons/leaf-shadow.png'
-            });
-
-
-            //KARTE einfuegen 
-            var meineKarte = L.map('karte').setView([51.1657, 10.4515], 11);
-            L.tileLayer('https://tile.openstreetmap.de/{z}/{x}/{y}.png', {
-                maxZoom: 100,
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(meineKarte);
-
-            //Setzt ein Punkt auf die Karte (mit dem Icon)
-            var marker = L.marker([52.5295625,13.2383125], { icon: leafIcon }).addTo(meineKarte);  //Setzt Punkt in die Liste 
-            marker.bindPopup("Müll Heizkraftwerk").openPopup(); //Öffntet ein Pop-up sobald mal auf den Punkt drückt
-
-             //Setzt ein Punkt auf die Karte (mit dem Icon)
-             var marker2 = L.marker([52.5374407951431,13.3472728336849], { icon: leafIcon }).addTo(meineKarte);  //Setzt Punkt in die Liste 
-            marker2.bindPopup("Heizkraftwerk Moabit").openPopup(); //Öffntet ein Pop-up sobald mal auf den Punkt drückt
-
-             //Setzt ein Punkt auf die Karte (mit dem Icon)
-            var marker3 = L.marker([52.487667277309974, 13.3116531306552], { icon: leafIcon }).addTo(meineKarte);  //Setzt Punkt in die Liste 
-            marker3.bindPopup("Vattenfall Wärme Berlin AG, Heizkraftwerk Wilmersdorf").openPopup(); //Öffntet ein Pop-up sobald mal auf den Punkt drückt
-
-
-            //Methoden Funktion für das ein und Ausblenden der Standort Liste
-            function toggleListMenue() {
-                const ListmenueVar = document.getElementById("listeMenueID") /* gibt das Elemnt als Objekt wieder, dieses objekt wird in der Variable ListMenueVar gespeichert */
-               /*  console.log("Hello")  /*console = Ausgabe auf der Konsole im Tool */
-               /* console.log(ListmenueVar)   */ /*Hier wird das gespeicherte Objekt auf der Konsole ausgeben */ 
-               
-                /* Kurz was passiert hier=?
-                    Hier wird geschaut ob das Objekt ListmenueVar die Klasse "versteckt" enthält
-                    nun schau ich, anfangs enthält das Objekt ListmenueVar die KLasse "versteckt" nicht,
-                    sodass ich in die Else- Bedingung springe und "versteckt" hinzufüge. ( Im CSS ist die Klasse versteckt als display:none dargestellt )
-                    Nun enthält das Objekt die KLasse versteckt. Klicke ich nochmal auf die Dreierstriche 
-                    wiederhole ich den Vorgang mit der If bedingung. Das heißt die KLasse "versteckt" ist im Objekt ListmenueVAr enthalten.
-                    somit entferne ich die Klasse versteckt und die Liste wird angezeigt.
-
-                */
-                if(ListmenueVar.classList.contains("versteckt")) {
-                    ListmenueVar.classList.remove("versteckt")
-                }
-                else{
-                    ListmenueVar.classList.add("versteckt")     /* fügt div eine Klasse hinzu*/
-                }
-            }
-    
-
-        </script>
+ 
     </div>
 
     <br>
@@ -161,7 +107,7 @@
 
     <!---------------------------------- ADD SCREEN ------------------------------------------>
 
-    <div class="add-container">
+    <div class="add-container" id="addScreen">
         <br />
         <br />
         <form>
@@ -211,7 +157,7 @@
 
     <!------------------------------- UPDATE / DELETE SCREEN ------------------------------------------>
 
-    <div class="update-container">
+    <div class="update-container" id="updateScreen">
         <br />
         <br />
         <form>
@@ -255,11 +201,7 @@
     </div>
 
 </body>
-
-<!-- Gehört zur Map -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
+<script src="js/script.js"></script>
 </html>
