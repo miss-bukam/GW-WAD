@@ -48,33 +48,64 @@ function toggleListMenue() {
     }
 }
 
-/** Hier werden Script für den Zweiten Beleg dargestellt */
+/**********************
+ * ************** 
+ * Hier werden Script für den Zweiten Beleg dargestellt 
+ * **************
+ * ********************/
+
+
 let angemeldet = false;
 
+
+// Der Admin 
 const admina = {
     username: "admina", 
     password: "password",
     role: "admin"
 };
 
+//Der Normalo
 const normalo = {
     username: "normalo", 
     password: "password",
     role: "non-admin"
 };
 
+
+/*Auführungsfunktion der Aktionen */
 const initScreensAddEventHandlers = function () {
 if (angemeldet === false) {
     showLoginAndHideOthers();
 } else {
     hideOthersAndShowMap();
-}
-// What event are we interested in?: submit
-// What is the event target?: form
-// What is the event handler?: checkLogin
-document.getElementById("loginForm").onsubmit = checkLogin;
+    
 }
 
+document.getElementById("loginForm").onsubmit = checkLogin;
+
+
+//OnClickButton für den Add Screen 
+document.querySelector('#addID').onclick = function(){
+    if(angemeldet){
+        hideOthersAndShowAdd();
+    } else{
+        alert("Sie sind kein Admin! ")
+    }
+};
+
+//OnClickButton für den Abmelde Button
+document.querySelector('#logoutID').onclick = function(){
+    if(angemeldet){
+        showLoginAndHideOthers();
+    } else{
+        alert("Passiert nichts..")
+    }
+};
+
+}
+
+//   Prüft den Login 
 function checkLogin(e) { 
 // e - the event obj
 // Why e.preventDefault()? 
@@ -86,20 +117,43 @@ e.preventDefault();
 const loginEntered = document.getElementById("usernameID").value;
 const passwordEntered = document.getElementById("passwordID").value;
 
+let  currentUser = null; // aktueller User
+
 // check, if they are correct
 if (admina.username === loginEntered && admina.password === passwordEntered 
-    || normalo.username == loginEntered && normalo.password == passwordEntered ) {
+    || normalo.username === loginEntered && normalo.password === passwordEntered ) {
         // correct:
         angemeldet = true;
-        hideOthersAndShowMap()
+        hideOthersAndShowMap();
+       
+        if(loginEntered === admina.username){
+            currentUser= admina;
+        }else{
+            currentUser= normalo;
+        }
+        
+        // 
+        const addButton = document.querySelector('#addID');
+        if (angemeldet && currentUser.role === "admin") {
+            // Benutzer ist angemeldet und hat die Rolle "admin", zeige den Button an
+            addButton.style.display = 'block';            // console.log("Benutzer ist ein Admin. Zeige den Button an.");
+
+        } else {
+            // Benutzer hat keine Berechtigung, verstecke den Button
+            addButton.style.display = 'none';           // console.log("Benutzer ist kein Admin. Verstecke den Button.");
+        }
+
 } else {
         // incorrect:
     alert("Falscher Benutzername und Passwort! ");
     angemeldet = false;
+   
 }  
-
 }
 
+window.onload = initScreensAddEventHandlers; 
+
+//Zeigt den LoginScreen - Entfernt alle anderen Screen's
 function showLoginAndHideOthers () {
 document.getElementById("loginScreen").style.display = "block";
 document.getElementById("mapScreen").style.display = "none";
@@ -108,6 +162,7 @@ document.getElementById("updateScreen").style.display = "none";
 
 }
 
+//Zeigt den Mapcreen - Entfernt alle anderen Screen's
 function hideOthersAndShowMap() {
 document.getElementById("mapScreen").style.display = "block";
 document.getElementById("loginScreen").style.display = "none";
@@ -115,7 +170,82 @@ document.getElementById("addScreen").style.display = "none";
 document.getElementById("updateScreen").style.display = "none";
 }
 
-// What event are we interested in?: load
-// What is the event target?: window
-// What is the event handler?: initScreensAddEventHandlers
-window.onload = initScreensAddEventHandlers; 
+//Zeigt den Addcreen - Entfernt alle anderen Screen's
+const hideOthersAndShowAdd = function(){
+    if(angemeldet){
+        document.getElementById("addScreen").style.display = "block";
+        document.getElementById("loginScreen").style.display = "none";
+        document.getElementById("updateScreen").style.display = "none";
+        document.getElementById("mapScreen").style.display = "none";
+
+    }/* else if (angemeldet && normalo.role === "non-admin") {
+        alert("Sie sind kein Admin!");
+        document.getElementById("addID").style.display = "none"; // verstecke Button
+
+    } else {
+        alert("Unbekannter Benutzer!");
+    }*/
+};
+
+
+/* Bist du admin? Oder non-Admin?
+function checkUserRole() {
+    const addButton = document.querySelector('#addID');
+    console.log("Angemeldet:", angemeldet);
+    console.log("Rolle (admina):", admina.role);
+    console.log("Rolle (normalo):", normalo.role);
+
+    if (angemeldet && currentUser.role === "admin") {
+        // Benutzer ist angemeldet und hat die Rolle "admin", zeige den Button an
+        console.log("Benutzer ist ein Admin. Zeige den Button an.");
+
+        addButton.style.display = 'block';
+    } else {
+        // Benutzer hat keine Berechtigung, verstecke den Button
+        console.log("Benutzer ist kein Admin. Verstecke den Button.");
+
+        addButton.style.display = 'none';
+    }
+}
+*/
+
+
+
+
+
+/*
+//Globalen JS-Objekte Müllheizkraftwerk
+let lockMuellHeizkraftwerk = {
+    name: "Müll Heizkraftwerk",
+    desc: "Heizkraftwerk ", 
+    street: "Freiheit 24-25",
+    zip: "13597", 
+    city: "Berlin",
+    state: "Deutschland",
+    lat: 52.5295625,
+    lon: 13.2383125
+};
+
+//Globalen JS-Objekte Vatenfall Wärme
+let lockVattenfallWaerme = {
+    name: "Vatenfall Wärme Berlin AG",
+    desc: "Heizkraftwerk", 
+    street: "Kurfürstendamm 143",
+    zip: "10709", 
+    city: "Berlin",
+    state: "Deutschland",
+    lat: 52.487667277309974,
+    lon: 13.3116531306552
+};
+
+//Globalen JS-Objekte Heizkraftwerk Moabit
+let lockMuellHeizkraftwerkMoabit = {
+    name: "Müll Hiezkraftwerk Moabit ",
+    desc: "Müll Heizkraftwerk", 
+    street: "Friedrich-Krause-Ufer",
+    zip: "13353", 
+    city: "Berlin",
+    state: "Deutschland",
+    lat: 52.5374407951431,
+    lon: 13.3472728336849
+};*/
