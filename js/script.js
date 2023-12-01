@@ -236,13 +236,9 @@ document.querySelector('#plusID').onclick = function(){
     }
 };
 
-let addScreen = document.getElementById("addScreen");
+const addScreen = document.getElementById("addScreen");
 
 
-// Funktion zum Umschalten der Sichtbarkeit des addScreen
-function toggleAddScreen() {
-}
-  
   // Funktion zum Behandeln des Absendens des Formulars zum Hinzufügen eines Standorts
   document.getElementById("plusID").addEventListener("click", function (event) {
     event.preventDefault();
@@ -250,49 +246,58 @@ function toggleAddScreen() {
     // Werte aus dem Formular erhalten
     if(addScreen.style.display === "none") {
         const name = document.getElementById("nameID").value;
-        const description = document.getElementById("describtionID").value;
         const street = document.getElementById("streetID").value;
-        const zip = document.getElementById("zipID").value;
         const city = document.getElementById("cityID").value;
-        const lat = document.getElementById("latID").value;
-        const lon = document.getElementById("lonID").value;
 
-        if(lat && lon && name) {
-            displayMarkerOnMap(parseFloat(lat),parseFloat(lon),name)
-        }
+        if(name && street && city) {
+            const description = document.getElementById("describtionID").value;
+            const zip = document.getElementById("zipID").value;
+            const lat = document.getElementById("latID").value;
+            const lon = document.getElementById("lonID").value;
 
-        // Den neuen Standort zur Liste hinzufügen
-        const list = document.getElementById("ortID");
-        const newName = document.createElement("li");
-        newName.textContent = `${name}`;
-        const newDetails = document.createElement("li");
-        newDetails.innerHTML = `<div class="AllgemeineStandortBeschreibung">
+            if(lat && lon) {
+                displayMarkerOnMap(parseFloat(lat),parseFloat(lon),name)
+            }
+
+            // Den neuen Standort zur Liste hinzufügen
+            const list = document.getElementById("ortID");
+            const newName = document.createElement("li");
+
+            newName.textContent = `${name}`;
+            newName.style.marginBottom = "120px";
+
+            const newDetails = document.createElement("li");
+            newDetails.innerHTML = `<div class="AllgemeineStandortBeschreibung">
             <p class="Adresse">Adresse: ${street}, ${zip} ${city}</p>
             <p class="Beschreibung">Beschreibung: ${description}</p>
             <p class="Latitude">Latitude: ${lat}</p>
             <p class="Longitude">Longitude: ${lon}</p>
             </div>`;
 
-        list.appendChild(newName);
-        list.appendChild(newDetails);
+            newDetails.style.marginBottom = "0px";
+            newDetails.style.padding = "0px";
 
-    // Den neuen Standort zur Karte hinzufügen (diesen Teil musst du implementieren)
-    // Beispiel: displayMarkerOnMap(lat, lon);
-  
-    // Die Formularfelder leeren
-    document.getElementById("nameID").value = "";
-    document.getElementById("describtionID").value = "";
-    document.getElementById("streetID").value = "";
-    document.getElementById("zipID").value = "";
-    document.getElementById("cityID").value = "";
-    document.getElementById("latID").value = "";
-    document.getElementById("lonID").value = "";
-  
-    // Den addScreen ausblenden
-    toggleAddScreen();
+            list.appendChild(newName);
+            newName.appendChild(newDetails);
+
+            // Den neuen Standort zur Karte hinzufügen (diesen Teil musst du implementieren)
+            // Beispiel: displayMarkerOnMap(lat, lon);
+    
+            // Die Formularfelder leeren
+            document.getElementById("nameID").value = "";
+            document.getElementById("describtionID").value = "";
+            document.getElementById("streetID").value = "";
+            document.getElementById("zipID").value = "";
+            document.getElementById("cityID").value = "";
+            document.getElementById("latID").value = "";
+            document.getElementById("lonID").value = "";
+
+        } else {
+            alert("Name, Straße und Stadt sind erforderlich!");
+            hideOthersAndShowAdd();
+        }
     }
-
-  });
+});
   
 
     // Beispiel-Funktion zum Anzeigen eines Markers auf der Karte (ersetze dies durch deine Kartenimplementierung)
