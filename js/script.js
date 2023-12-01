@@ -79,7 +79,6 @@ if (angemeldet === false) {
     showLoginAndHideOthers();
 } else {
     hideOthersAndShowMap();
-    
 }
 
 document.getElementById("loginForm").onsubmit = checkLogin;

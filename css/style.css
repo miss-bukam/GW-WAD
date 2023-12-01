@@ -259,14 +259,14 @@ li {
 
 /*Fußzeile mit Datenschutz etc.*/
 footer {
-    font-size: 15px;
-    padding: 12px 12px;
+    font-size: 17px;
+    padding: 15px 15px;
     text-align: center;
 }
 
 /*Fußzeile Ohne Strich*/
 footer a{
-    font-size: 15px;
+    font-size: 17px;
     color: black;
 }
 
