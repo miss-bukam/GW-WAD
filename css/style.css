@@ -299,7 +299,9 @@ h1 {
     letter-spacing: 2px;
 }
 
-
+li:hover {
+    color: rgb(106, 106, 106);
+}
 
 /************************************************** ADD SCREEN ***********************************/
 /*Eigenschaften des Add-Screens*/
@@ -392,12 +394,12 @@ input#latID,input#lonID {
 }
 
 /*AbbruchButton Eigenschaften*/
-.add-container #cancelID {
+.add-container #addCancelID {
     background-color: rgb(134, 134, 134);
 }
 
 /*Um ein Side-Effekt Button abbruch*/
-.add-container #cancelID:hover {
+.add-container #addCancelID:hover {
     background-color: rgb(125, 125, 125);
 }
 

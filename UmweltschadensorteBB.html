@@ -39,8 +39,6 @@
         </form>
     </div>
 
-    <hr />
-
     <!------------------------- MAIN SCREEN ------------------------------------------>
 
     
@@ -51,7 +49,7 @@
         <!--Hier sollen die Standorte angezeigt werden-->
         <div class="listenMenue" id="listeMenueID">
             <h3>Standorte</h3>
-            <ul>
+            <ul id="ortID">
                 <li>Vattenfall Wärme Berlin AG
                     <div class="AllgemeineStandortBeschreibung">
                         <p class="Adresse">Adresse: Kurfürstendamm 143, 10709 Berlin</p>
@@ -100,8 +98,6 @@
         &thinsp; | &thinsp;
         <a href="https://www.htw-berlin.de/datenschutz/" target="_blank" style="font-size: 12px">Datenschutz</a>
     </footer>
-    <hr />
-
 
     <!---------------------------------- ADD SCREEN ------------------------------------------>
 
@@ -142,7 +138,7 @@
             <br />
 
             <div class="button-container-add">
-                <button id="cancelID" type="cancel">Abbrechen</button>
+                <button id="addCancelID" type="cancel">Abbrechen</button>
                 <button id="plusID" type="add">Hinzufügen</button>
             </div>
         </form>
@@ -151,7 +147,6 @@
     </div>
     <br>
     <br>
-    <hr />
 
     <!------------------------------- UPDATE / DELETE SCREEN ------------------------------------------>
 
@@ -190,7 +185,7 @@
             <input type="text" id="lonID" name="lon">
             <br />
             <br />
-            <button type="cancel">Abbrechen</button>
+            <button id="updateCancelID" type="cancel">Abbrechen</button>
             <button id="deleteID" type="delete">Löschen</button>
             <button id="updateID" type="update">Aktualisieren</button>
         </form>

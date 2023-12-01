@@ -98,6 +98,7 @@ document.querySelector('#addID').onclick = function(){
 document.querySelector('#logoutID').onclick = function(){
     if(angemeldet){
         showLoginAndHideOthers();
+        currentUser = null;
     } else{
         alert("Passiert nichts..")
     }
@@ -170,6 +171,14 @@ document.getElementById("addScreen").style.display = "none";
 document.getElementById("updateScreen").style.display = "none";
 }
 
+//Zeigt den Mapcreen - Entfernt alle anderen Screen's
+function hideOthersAndShowUpdate() {
+    document.getElementById("mapScreen").style.display = "none";
+    document.getElementById("loginScreen").style.display = "none";
+    document.getElementById("addScreen").style.display = "none";
+    document.getElementById("updateScreen").style.display = "block";
+    }
+
 //Zeigt den Addcreen - Entfernt alle anderen Screen's
 const hideOthersAndShowAdd = function(){
     if(angemeldet){
@@ -185,6 +194,35 @@ const hideOthersAndShowAdd = function(){
     } else {
         alert("Unbekannter Benutzer!");
     }*/
+};
+
+// Wenn man auf Liste klickt, kommt UpdateScreen
+document.querySelector('#ortID').onclick = function(){
+    const loginEntered = document.getElementById("usernameID").value;
+    let  currentUser = (loginEntered === admina.username) ? admina:normalo;
+
+    if(angemeldet && currentUser.role === "admin"){
+        hideOthersAndShowUpdate();
+    } else{
+        alert("Sie sind nicht Admin");
+    }
+};
+
+// Wenn man Abbrechen im UpdateScreen klickt, kommt MapScreen
+document.querySelector('#updateCancelID').onclick = function(){
+    if(angemeldet){
+        hideOthersAndShowMap();
+    } else{
+        alert("Unbekannter Fehler");
+    }
+};
+
+document.querySelector('#addCancelID').onclick = function(){
+    if(angemeldet){
+        hideOthersAndShowMap();
+    } else{
+        alert("Unbekannter Fehler");
+    }
 };
 
 
