@@ -217,6 +217,7 @@ document.querySelector('#updateCancelID').onclick = function(){
     }
 };
 
+// Wenn man Abbrechen im AddScreen klickt, kommt MapScreen
 document.querySelector('#addCancelID').onclick = function(){
     if(angemeldet){
         hideOthersAndShowMap();
@@ -224,6 +225,96 @@ document.querySelector('#addCancelID').onclick = function(){
         alert("Unbekannter Fehler");
     }
 };
+
+// Wenn man add klickt im AddScreen kommt MainScreen
+document.querySelector('#plusID').onclick = function(){
+    if(angemeldet){
+        hideOthersAndShowMap();
+        // Daten speichern
+        //TODO Pop up
+    } else{
+        alert("Unbekannter Fehler");
+    }
+};
+
+let addScreen = document.getElementById("addScreen");
+
+
+// Funktion zum Umschalten der Sichtbarkeit des addScreen
+function toggleAddScreen() {
+}
+  
+  // Funktion zum Behandeln des Absendens des Formulars zum Hinzufügen eines Standorts
+  document.getElementById("plusID").addEventListener("click", function (event) {
+    event.preventDefault();
+  
+    // Werte aus dem Formular erhalten
+    if(addScreen.style.display === "none") {
+        const name = document.getElementById("nameID").value;
+        const description = document.getElementById("describtionID").value;
+        const street = document.getElementById("streetID").value;
+        const zip = document.getElementById("zipID").value;
+        const city = document.getElementById("cityID").value;
+        const lat = document.getElementById("latID").value;
+        const lon = document.getElementById("lonID").value;
+
+        if(lat && lon && name) {
+            displayMarkerOnMap(parseFloat(lat),parseFloat(lon),name)
+        }
+
+        // Den neuen Standort zur Liste hinzufügen
+        const list = document.getElementById("ortID");
+        const newLocation = document.createElement("li");
+        newLocation.textContent = `${name}`;
+        newLocation.innerHTML = `
+        <p class="AllgemeineStandortBeschreibung">
+        Adresse: ${street}, ${zip} ${city} <br>
+        Beschreibung: ${description} <br>
+        Latitude: ${lat} <br>
+        Longitude: ${lon} <br>
+        </p>
+        `;
+
+        list.appendChild(newLocation);
+
+    // Den neuen Standort zur Karte hinzufügen (diesen Teil musst du implementieren)
+    // Beispiel: displayMarkerOnMap(lat, lon);
+  
+    // Die Formularfelder leeren
+    document.getElementById("nameID").value = "";
+    document.getElementById("describtionID").value = "";
+    document.getElementById("streetID").value = "";
+    document.getElementById("zipID").value = "";
+    document.getElementById("cityID").value = "";
+    document.getElementById("latID").value = "";
+    document.getElementById("lonID").value = "";
+  
+    // Den addScreen ausblenden
+    toggleAddScreen();
+    }
+
+  });
+  
+
+    // Beispiel-Funktion zum Anzeigen eines Markers auf der Karte (ersetze dies durch deine Kartenimplementierung)
+    function displayMarkerOnMap(lat, lon) {
+    const mapElement = document.getElementById("karte");
+  
+    // Ersetze die folgende Zeile durch deinen tatsächlichen Code zum Hinzufügen eines Markers zur Karte
+    mapElement.innerHTML = `Marker hinzugefügt bei LAT: ${lat}, LON: ${lon}`;
+  }
+  
+  function displayMarkerOnMap(lat, lon, name) {
+    const mapElement = document.getElementById("karte");
+
+    // Erstelle einen neuen Marker mit dem Icon
+    const newMarker = L.marker([lat, lon], { icon: leafIcon }).addTo(meineKarte);
+    newMarker.bindPopup(name).openPopup(); // Zeige den Standortnamen im Popup an
+
+    // Ersetze die folgende Zeile durch deinen tatsächlichen Code zum Hinzufügen eines Markers zur Karte
+    // mapElement.innerHTML = `Marker hinzugefügt bei LAT: ${lat}, LON: ${lon}`;
+    }
+
 
 
 /* Bist du admin? Oder non-Admin?
