@@ -264,18 +264,19 @@ function toggleAddScreen() {
 
         // Den neuen Standort zur Liste hinzufügen
         const list = document.getElementById("ortID");
-        const newLocation = document.createElement("li");
-        newLocation.textContent = `${name}`;
-        newLocation.innerHTML = `
-        <p class="AllgemeineStandortBeschreibung">
-        Adresse: ${street}, ${zip} ${city} <br>
-        Beschreibung: ${description} <br>
-        Latitude: ${lat} <br>
-        Longitude: ${lon} <br>
-        </p>
-        `;
+        const newName = document.createElement("li");
+        newName.textContent = `${name}`;
+        const newDetails = document.createElement("li");
+        newDetails.innerHTML = `
+        <div class="AllgemeineStandortBeschreibung">
+        <p class="Adresse">Adresse: ${street}, ${zip} ${city}</p>
+        <p class="Beschreibung">Beschreibung: ${description}</p>
+        <p class="Latitude">Latitude: ${lat}</p>
+        <p class="Longitude">Longitude: ${lon}</p>
+        </div>`;
 
-        list.appendChild(newLocation);
+        list.appendChild(newName);
+        list.appendChild(newDetails);
 
     // Den neuen Standort zur Karte hinzufügen (diesen Teil musst du implementieren)
     // Beispiel: displayMarkerOnMap(lat, lon);
