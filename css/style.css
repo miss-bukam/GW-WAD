@@ -158,6 +158,7 @@ input::placeholder {
     z-index: 3;         /* nächstes Stapelreihenfolge 3 */
     border: 1px solid  rgb(209, 208, 184);
     backdrop-filter: blur(30px) ;
+    overflow-y: auto;
 }
 
 /*Eine KLasse für StandortListe*/

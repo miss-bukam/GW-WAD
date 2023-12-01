@@ -266,13 +266,12 @@ function toggleAddScreen() {
         const newName = document.createElement("li");
         newName.textContent = `${name}`;
         const newDetails = document.createElement("li");
-        newDetails.innerHTML = `
-        <div class="AllgemeineStandortBeschreibung">
-        <p class="Adresse">Adresse: ${street}, ${zip} ${city}</p>
-        <p class="Beschreibung">Beschreibung: ${description}</p>
-        <p class="Latitude">Latitude: ${lat}</p>
-        <p class="Longitude">Longitude: ${lon}</p>
-        </div>`;
+        newDetails.innerHTML = `<div class="AllgemeineStandortBeschreibung">
+            <p class="Adresse">Adresse: ${street}, ${zip} ${city}</p>
+            <p class="Beschreibung">Beschreibung: ${description}</p>
+            <p class="Latitude">Latitude: ${lat}</p>
+            <p class="Longitude">Longitude: ${lon}</p>
+            </div>`;
 
         list.appendChild(newName);
         list.appendChild(newDetails);
@@ -314,6 +313,9 @@ function toggleAddScreen() {
     // Ersetze die folgende Zeile durch deinen tatsächlichen Code zum Hinzufügen eines Markers zur Karte
     // mapElement.innerHTML = `Marker hinzugefügt bei LAT: ${lat}, LON: ${lon}`;
     }
+
+
+
 
 
 
