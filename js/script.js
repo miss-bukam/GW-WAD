@@ -145,7 +145,7 @@ if (admina.username === loginEntered && admina.password === passwordEntered
 
 } else {
         // incorrect:
-    alert("Falscher Benutzername und Passwort! ");
+    alert("Falscher Benutzername oder Passwort! ");
     angemeldet = false;
    
 }  
@@ -205,7 +205,9 @@ document.querySelector('#ortID').onclick = function(){
         if(currentUser.role === "non-admin") {
             document.getElementById("deleteID").style.display = "none";
             document.getElementById("updateID").style.display = "none";
-        }
+        } 
+        // TODO: wenn man das zweite mal als admina anmeldet, 
+        // kann sie auch nicht standort bearbeiten oder löschen
     } else{
         alert("Fehler");
     }
