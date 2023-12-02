@@ -258,6 +258,7 @@ const addScreen = document.getElementById("addScreen");
             const zip = document.getElementById("zipID").value;
             const lat = document.getElementById("latID").value;
             const lon = document.getElementById("lonID").value;
+            const bundesland = document.getElementById("bundeslandID").value;
 
             if(lat && lon) {
                 displayMarkerOnMap(parseFloat(lat),parseFloat(lon),name)
@@ -273,6 +274,7 @@ const addScreen = document.getElementById("addScreen");
             const newDetails = document.createElement("li");
             newDetails.innerHTML = `<div class="AllgemeineStandortBeschreibung">
             <p class="Adresse">Adresse: ${street}, ${zip} ${city}</p>
+            <p class="Bundesland">Bundesland :${bundesland}</p>
             <p class="Beschreibung">Beschreibung: ${description}</p>
             <p class="Latitude">Latitude: ${lat}</p>
             <p class="Longitude">Longitude: ${lon}</p>

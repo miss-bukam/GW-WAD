@@ -113,7 +113,7 @@
             <input type="text" id="cityID" name="city" required />
 
             <label for="bundesland">Bundesland</label>
-            <select id="cityID" name="city">
+            <select id="bundeslandID" name="bundesland">
                 <option value="Berlin">Berlin</option>
                 <option value="Brandenburg">Brandenburg</option>
             </select>
@@ -143,33 +143,36 @@
         <form>
             <h3>Aktualisiere einen Standort! </h3>
             <hr />
-            <label for="name">Name</label>
-            <input type="text" id="nameID" name="name" required />
+            <label for="updatename">Name</label>
+            <input type="text" id="updateNameID" name="name" required />
 
-            <label for="describtion">Beschreibung</label>
-            <textarea type="text" id="describtionID" name="describtion"></textarea>
+            <label for="updateDetails">Details</label>
+            <div id="updateDetailsID"></div>
 
-            <label for="street">Straße</label>
-            <input type="text" id="streetID" name="street" required>
+            <label for="updateDescribtion">Beschreibung</label>
+            <textarea type="text" id="updateDescribtionID" name="describtion"></textarea>
 
-            <label for="zip">Postleitzahl</label>
-            <input type="text" id="zipID" name="zip" pattern="[0-9]{5}"
+            <label for="updateStreet">Straße</label>
+            <input type="text" id="updateStreetID" name="street" required>
+
+            <label for="updateZip">Postleitzahl</label>
+            <input type="text" id="updateZipID" name="zip" pattern="[0-9]{5}"
                 title="Bitte geben Sie eine fünfstellige Ziffer ein">
 
-            <label for="city">Stadt</label>
-            <input type="text" id="cityID" name="city" required>
+            <label for="updateCity">Stadt</label>
+            <input type="text" id="updateCityID" name="city" required>
 
-            <label for="bundesland">Bundesland</label>
-            <select id="cityID" name="city">
+            <label for="updateBundesland">Bundesland</label>
+            <select id="updateBundeslandID" name="bundesland">
                 <option value="Berlin">Berlin</option>
                 <option value="Brandenburg">Brandenburg</option>
             </select>
 
-            <label for="lat">LAT</label>
-            <input type="text" id="latID" name="lat">
+            <label for="updateLat">LAT</label>
+            <input type="text" id="updateLatID" name="lat">
 
-            <label for="lon">LON</label>
-            <input type="text" id="lonID" name="lon">
+            <label for="updateLon">LON</label>
+            <input type="text" id="updateLonID" name="lon">
             <br />
             <br />
             <button id="updateCancelID" type="cancel">Abbrechen</button>
