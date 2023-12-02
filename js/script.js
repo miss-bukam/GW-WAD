@@ -200,10 +200,14 @@ document.querySelector('#ortID').onclick = function(){
     const loginEntered = document.getElementById("usernameID").value;
     let  currentUser = (loginEntered === admina.username) ? admina:normalo;
 
-    if(angemeldet && currentUser.role === "admin"){
+    if(angemeldet) {
         hideOthersAndShowUpdate();
+        if(currentUser.role === "non-admin") {
+            document.getElementById("deleteID").style.display = "none";
+            document.getElementById("updateID").style.display = "none";
+        }
     } else{
-        alert("Sie sind nicht Admin");
+        alert("Fehler");
     }
 };
 
