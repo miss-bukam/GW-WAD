@@ -233,6 +233,7 @@ const hideOthersAndShowAdd = function(){
 document.querySelector('#ortID').onclick = function(){
     //const loginEntered = document.getElementById("usernameID").value;
     //let  currentUser = (loginEntered === admina.username) ? admina:normalo;
+    
 
     if(angemeldet && currentUser.role === "non-admin") {
         hideOthersAndShowUpdate();
@@ -248,46 +249,62 @@ document.querySelector('#ortID').onclick = function(){
     } else{
         alert("Fehler");
     }
+
+    fillUpdateFields(selectedLocation);
 };
+
+locations = [];
+let id = 1;
+
+function addLocationToArr(name, description, street, zip, city, lat, lon, bundesland) {
+    const newLocation = {
+        id: id,
+        name: name,
+        description: description,
+        street: street,
+        zip: zip,
+        city: city,
+        lat: lat,
+        lon: lon,
+        bundesland: bundesland
+    };
+
+    id++;
+    locations.push(newLocation);
+}
+
 
 document.querySelector('#deleteID').onclick = function() {
     if (angemeldet && currentUser.role === "admin") {
+        const locationIdToDelete = 1; //TODO noch ändern
         const confirmed = confirm("Möchten Sie diesen Standort wirklich löschen?");
         if (confirmed) {
-            deleteLocation(selectedLocationId);
-            alert("Standort erfolgreich gelöscht!");
-            hideOthersAndShowMap(); // Zurück zur Karte
+
+            const locationIndex = locations.findIndex(location => location.id === locationIdToDelete);
+
+            if (locationIndex !== -1) {
+                // Standort aus der Liste entfernen
+                
+                locations.splice(locationIndex, 1);
+
+                alert("Standort erfolgreich gelöscht!");
+                hideOthersAndShowMap(); // Zurück zur Karte 
+
+                location[locationIndex].name = null;               
+                location[locationIndex].description = null;
+                location[locationIndex].street = null;
+                location[locationIndex].zip = null;
+                location[locationIndex].city = null;
+                location[locationIndex].lat = null;
+                location[locationIndex].lon = null;
+                location[locationIndex].bundesland = null;
+
+            } else {
+                alert("Fehler beim Löschen des Standorts! Standort nicht gefunden.");
+            }
         }
     } else {
         alert("Fehler beim Löschen des Standorts!");
-    }
-}
-
-// Funktion zum Löschen des Standorts
-function deleteLocation(locationId) {
-    // Hier musst du die Standortdaten aus deiner Liste entfernen
-    const index = locations.findIndex(loc => loc.id === locationId);
-    if (index !== -1) {
-        const deletedLocation = locations.splice(index, 1)[0];
-        // Hier musst du den Marker von der Karte entfernen
-        removeMarkerFromMap(deletedLocation);
-        // Hier musst du das Listenelement entfernen
-        removeListItem(locationId);
-    }
-}
-
-// Funktion zum Entfernen des Markers von der Karte
-function removeMarkerFromMap(location) {
-    // Hier musst du den Marker von deiner Leaflet-Karte entfernen
-    // Beispiel: meineKarte.removeLayer(location.marker);
-}
-
-// Funktion zum Entfernen des Listenelements
-function removeListItem(locationId) {
-    // Hier musst du das Listenelement anhand seiner ID entfernen
-    const listItem = document.getElementById(`listItem_${locationId}`);
-    if (listItem) {
-        listItem.remove();
     }
 }
 
@@ -299,6 +316,24 @@ document.querySelector('#updateCancelID').onclick = function(){
         alert("Unbekannter Fehler");
     }
 };
+
+function setUpdateFields(locationId) {
+    const location = locationsArray.find(loc => loc.id === locationId);
+
+    if (location) {
+        document.getElementById("updateNameID").value = location.name;
+        document.getElementById("updateDescribtionID").value = location.description;
+        document.getElementById("updateStreetID").value = location.street;
+        document.getElementById("updateZipID").value = location.zip;
+        document.getElementById("updateCityID").value = location.city;
+        document.getElementById("updateBundeslandID").value = location.bundesland;
+        document.getElementById("updateLatID").value = location.lat;
+        document.getElementById("updateLonID").value = location.lon;
+    } else {
+        console.error("Standort nicht gefunden!");
+    }
+}
+
 
 // Wenn man Abbrechen im AddScreen klickt, kommt MapScreen
 document.querySelector('#addCancelID').onclick = function(){
@@ -319,8 +354,6 @@ document.querySelector('#plusID').onclick = function(){
         alert("Unbekannter Fehler");
     }
 };
-
-
 
 const addScreen = document.getElementById("addScreen");
 
@@ -351,13 +384,13 @@ const addScreen = document.getElementById("addScreen");
             const newName = document.createElement("li");
             newName.id = `listItem_${location.id};`
             newName.textContent = `${name}`;
-            newName.style.marginBottom = "120px";
+            newName.style.marginBottom = "167px";
 
             const newDetails = document.createElement("li");
             newDetails.innerHTML = `<div class="AllgemeineStandortBeschreibung">
             <p class="Adresse">Adresse: ${street}, ${zip} ${city}</p>
             <p class="Bundesland">Bundesland :${bundesland}</p>
-            <p class="Beschreibung">Beschreibung: ${description}</p>
+            <p class="Beschreibung">Beschreibung: ${descriptsion}</p>
             <p class="Latitude">Latitude: ${lat}</p>
             <p class="Longitude">Longitude: ${lon}</p>
             </div>`;
@@ -368,8 +401,7 @@ const addScreen = document.getElementById("addScreen");
             list.appendChild(newName);
             newName.appendChild(newDetails);
 
-            // Den neuen Standort zur Karte hinzufügen (diesen Teil musst du implementieren)
-            // Beispiel: displayMarkerOnMap(lat, lon);
+            addLocationToArr(name, description, street, zip, city, lat, lon, bundesland);
     
             // Die Formularfelder leeren
             document.getElementById("nameID").value = "";
