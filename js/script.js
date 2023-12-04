@@ -57,6 +57,39 @@ function toggleListMenue() {
 
 let angemeldet = false;
 
+// Standortdaten als Liste von Objekten
+let standorte = [
+    {
+        name: "Müll Heizkraftwerk",
+        desc: "Heizkraftwerk ",
+        street: "Freiheit 24-25",
+        zip: "13597",
+        city: "Berlin",
+        state: "Deutschland",
+        lat: 52.5295625,
+        lon: 13.2383125
+    },
+    {
+        name: "Heizkraftwerk Moabit",
+        desc: "Heizkraftwerk",
+        street: "Friedrich-Krause-Ufer",
+        zip: "13353",
+        city: "Berlin",
+        state: "Deutschland",
+        lat: 52.5374407951431,
+        lon: 13.3472728336849
+    },
+    {
+        name: "Vattenfall Wärme Berlin AG",
+        desc: "Heizkraftwerk",
+        street: "Kurfürstendamm 143",
+        zip: "10709",
+        city: "Berlin",
+        state: "Deutschland",
+        lat: 52.487667277309974,
+        lon: 13.3116531306552
+    }
+];
 
 // Der Admin 
 const admina = {
@@ -93,6 +126,8 @@ document.querySelector('#addID').onclick = function(){
     }
 };
 
+let  currentUser = null; // aktueller User
+
 //OnClickButton für den Abmelde Button
 document.querySelector('#logoutID').onclick = function(){
     if(angemeldet){
@@ -117,7 +152,6 @@ e.preventDefault();
 const loginEntered = document.getElementById("usernameID").value;
 const passwordEntered = document.getElementById("passwordID").value;
 
-let  currentUser = null; // aktueller User
 
 // check, if they are correct
 if (admina.username === loginEntered && admina.password === passwordEntered 
@@ -197,21 +231,65 @@ const hideOthersAndShowAdd = function(){
 
 // Wenn man auf Liste klickt, kommt UpdateScreen
 document.querySelector('#ortID').onclick = function(){
-    const loginEntered = document.getElementById("usernameID").value;
-    let  currentUser = (loginEntered === admina.username) ? admina:normalo;
+    //const loginEntered = document.getElementById("usernameID").value;
+    //let  currentUser = (loginEntered === admina.username) ? admina:normalo;
 
-    if(angemeldet) {
+    if(angemeldet && currentUser.role === "non-admin") {
         hideOthersAndShowUpdate();
-        if(currentUser.role === "non-admin") {
-            document.getElementById("deleteID").style.display = "none";
-            document.getElementById("updateID").style.display = "none";
-        } 
+        document.getElementById("deleteID").style.display = "none";
+        document.getElementById("updateID").style.display = "none";
+         
         // TODO: wenn man das zweite mal als admina anmeldet, 
         // kann sie auch nicht standort bearbeiten oder löschen
+    } else if (angemeldet && currentUser.role === "admin") {
+        hideOthersAndShowUpdate();
+        document.getElementById("deleteID").style.display = "inline-block";
+        document.getElementById("updateID").style.display = "inline-block";
     } else{
         alert("Fehler");
     }
 };
+
+document.querySelector('#deleteID').onclick = function() {
+    if (angemeldet && currentUser.role === "admin") {
+        const confirmed = confirm("Möchten Sie diesen Standort wirklich löschen?");
+        if (confirmed) {
+            deleteLocation(selectedLocationId);
+            alert("Standort erfolgreich gelöscht!");
+            hideOthersAndShowMap(); // Zurück zur Karte
+        }
+    } else {
+        alert("Fehler beim Löschen des Standorts!");
+    }
+}
+
+// Funktion zum Löschen des Standorts
+function deleteLocation(locationId) {
+    // Hier musst du die Standortdaten aus deiner Liste entfernen
+    const index = locations.findIndex(loc => loc.id === locationId);
+    if (index !== -1) {
+        const deletedLocation = locations.splice(index, 1)[0];
+        // Hier musst du den Marker von der Karte entfernen
+        removeMarkerFromMap(deletedLocation);
+        // Hier musst du das Listenelement entfernen
+        removeListItem(locationId);
+    }
+}
+
+// Funktion zum Entfernen des Markers von der Karte
+function removeMarkerFromMap(location) {
+    // Hier musst du den Marker von deiner Leaflet-Karte entfernen
+    // Beispiel: meineKarte.removeLayer(location.marker);
+}
+
+// Funktion zum Entfernen des Listenelements
+function removeListItem(locationId) {
+    // Hier musst du das Listenelement anhand seiner ID entfernen
+    const listItem = document.getElementById(`listItem_${locationId}`);
+    if (listItem) {
+        listItem.remove();
+    }
+}
 
 // Wenn man Abbrechen im UpdateScreen klickt, kommt MapScreen
 document.querySelector('#updateCancelID').onclick = function(){
@@ -242,6 +320,8 @@ document.querySelector('#plusID').onclick = function(){
     }
 };
 
+
+
 const addScreen = document.getElementById("addScreen");
 
 
@@ -269,7 +349,7 @@ const addScreen = document.getElementById("addScreen");
             // Den neuen Standort zur Liste hinzufügen
             const list = document.getElementById("ortID");
             const newName = document.createElement("li");
-
+            newName.id = `listItem_${location.id};`
             newName.textContent = `${name}`;
             newName.style.marginBottom = "120px";
 
