@@ -70,7 +70,7 @@ let standorte = [
         lon: 13.2383125
     },
     {
-        name: "Heizkraftwerk Moabit",
+        name: "Müll Heizkraftwerk Moabit",
         desc: "Heizkraftwerk",
         street: "Friedrich-Krause-Ufer",
         zip: "13353",
@@ -230,7 +230,7 @@ const hideOthersAndShowAdd = function(){
 };
 
 // Wenn man auf Liste klickt, kommt UpdateScreen
-document.querySelector('#ortID').onclick = function(){
+/*document.querySelector('#ortID').onclick = function(){
     //const loginEntered = document.getElementById("usernameID").value;
     //let  currentUser = (loginEntered === admina.username) ? admina:normalo;
     
@@ -251,16 +251,52 @@ document.querySelector('#ortID').onclick = function(){
     }
 
     fillUpdateFields(selectedLocation);
-};
+};*/
+
+// Wenn man auf Liste klickt, kommt UpdateScreen
+document.getElementById('ortID').addEventListener ('click', function(event){
+    //const loginEntered = document.getElementById("usernameID").value;
+    //let  currentUser = (loginEntered === admina.username) ? admina:normalo;
+    if (event.target.tagName === 'LI') {
+        console.log("Clicked LI element: ", event.target);
+
+     //***04.12.23 **/
+    //Standort speichern und durch aufruf der FUnktion
+    //populateUpdateForm() Daten speichern und eig. auf das update Screen bringen
+    //04.12.23
+    const selectedName = event.target.firstChild.textContent.trim() || event.target.innerText.trim();
+    console.log("Slected Name : ", selectedName);      //Zeige mir den Standort an 
+    console.log("Standorte array: ", standorte);
+    populateUpdateForm(selectedName);
+    }
+
+    if(angemeldet && currentUser.role === "non-admin") {
+        hideOthersAndShowUpdate();
+        document.getElementById("deleteID").style.display = "none";
+        document.getElementById("updateID").style.display = "none";
+         
+        // TODO: wenn man das zweite mal als admina anmeldet, 
+        // kann sie auch nicht standort bearbeiten oder löschen
+    } else if (angemeldet && currentUser.role === "admin") {
+        hideOthersAndShowUpdate();
+        document.getElementById("deleteID").style.display = "inline-block";
+        document.getElementById("updateID").style.display = "inline-block";
+    } else{
+        alert("Fehler");
+    }
+
+    fillUpdateFields(selectedLocation);
+
+});
 
 locations = [];
 let id = 1;
 
-function addLocationToArr(name, description, street, zip, city, lat, lon, bundesland) {
+function addLocationToArr(name, describtion, street, zip, city, lat, lon, bundesland) {
     const newLocation = {
         id: id,
         name: name,
-        description: description,
+        describtion: describtion,
         street: street,
         zip: zip,
         city: city,
@@ -271,6 +307,31 @@ function addLocationToArr(name, description, street, zip, city, lat, lon, bundes
 
     id++;
     locations.push(newLocation);
+}
+
+// Funktion zum Aktualisieren der Standortliste
+function updateLocationList() {
+    const listElement = document.getElementById("ortID");
+    // Leere die Liste
+    listElement.innerHTML = "";
+
+    // Füge die Standorte der Liste hinzu
+    for (const location of locations) {
+        const listItem = document.createElement("li");
+        listItem.textContent = location.name;
+
+        const detailsItem = document.createElement("li");
+        detailsItem.innerHTML = `<div class="AllgemeineStandortBeschreibung">
+            <p class="Adresse">Adresse: ${location.street}, ${location.zip} ${location.city}</p>
+            <p class="Bundesland">Bundesland: ${location.bundesland}</p>
+            <p class="Beschreibung">Beschreibung: ${location.describtion}</p>
+            <p class="Latitude">Latitude: ${location.lat}</p>
+            <p class="Longitude">Longitude: ${location.lon}</p>
+            </div>`;
+
+        listElement.appendChild(listItem);
+        listItem.appendChild(detailsItem);
+    }
 }
 
 
@@ -290,14 +351,16 @@ document.querySelector('#deleteID').onclick = function() {
                 alert("Standort erfolgreich gelöscht!");
                 hideOthersAndShowMap(); // Zurück zur Karte 
 
-                location[locationIndex].name = null;               
-                location[locationIndex].description = null;
-                location[locationIndex].street = null;
-                location[locationIndex].zip = null;
-                location[locationIndex].city = null;
-                location[locationIndex].lat = null;
-                location[locationIndex].lon = null;
-                location[locationIndex].bundesland = null;
+                /*delete locations[locationIdToDelete].name               
+                locations[locationIdToDelete].describtion = null;
+                locations[locationIdToDelete].street = null;
+                locations[locationIdToDelete].zip = null;
+                locations[locationIdToDelete].city = null;
+                locations[locationIdToDelete].lat = null;
+                locations[locationIdToDelete].lon = null;
+                locations[locationIdToDelete].bundesland = null;*/
+
+                updateLocationList(); // Aktualisiere die Standortliste
 
             } else {
                 alert("Fehler beim Löschen des Standorts! Standort nicht gefunden.");
@@ -306,6 +369,55 @@ document.querySelector('#deleteID').onclick = function() {
     } else {
         alert("Fehler beim Löschen des Standorts!");
     }
+}
+
+//Die Funktion setzt die Werte auf den Update/Delete Screen 
+function populateUpdateForm(selectedLocationName) {
+    console.log("Selected Location Name:", selectedLocationName);
+    console.log("Standorte:", standorte);
+    // Finde den ausgewählten Standort im Array
+    const selectedLocationObj = standorte.find(loc => loc.name.trim() === (typeof selectedLocationName === 'string' ? selectedLocationName.trim() : selectedLocationName));
+
+    if (selectedLocationObj) {
+        // Fülle die Formularfelder mit den Informationen des ausgewählten Standorts
+        setValueIfExists("updateNameID", selectedLocationObj.name);
+        setValueIfExists("updateDescribtionID", selectedLocationObj.desc);
+        setValueIfExists("updateStreetID", selectedLocationObj.street);
+        setValueIfExists("updateZipID", selectedLocationObj.zip);
+        setValueIfExists("updateCityID", selectedLocationObj.city);
+        setValueIfExists("updateBundeslandID", selectedLocationObj.state);
+        setValueIfExists("updateLatID", selectedLocationObj.lat);
+        setValueIfExists("updateLonID", selectedLocationObj.lon);
+    } else {
+        console.error("Standort nicht gefunden!");
+    }
+}
+
+//ÜberPrüfung des Standortes mit den Werten, wenn es nicht vorhanden ist, setzte nichts
+function setValueIfExists(elementId, value) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        element.value = value || ''; // Setze den Wert, falls vorhanden, ansonsten leeren String
+    } else {
+        console.error("Element mit ID ${elementId} nicht gefunden!");
+    }
+}
+
+//Funktion fügt Standorte zur StandortListe hinzu
+function addLocationToArr(name, description, street, zip, city, lat, lon, bundesland) {
+    const newLocation = {
+        name: name,
+        desc: description,
+        street: street,
+        zip: zip,
+        city: city,
+        lat: lat,
+        lon: lon,
+        state: bundesland
+    };
+
+    standorte.push(newLocation);
+    return newLocation;
 }
 
 // Wenn man Abbrechen im UpdateScreen klickt, kommt MapScreen
@@ -322,7 +434,7 @@ function setUpdateFields(locationId) {
 
     if (location) {
         document.getElementById("updateNameID").value = location.name;
-        document.getElementById("updateDescribtionID").value = location.description;
+        document.getElementById("updateDescribtionID").value = location.describtion;
         document.getElementById("updateStreetID").value = location.street;
         document.getElementById("updateZipID").value = location.zip;
         document.getElementById("updateCityID").value = location.city;
@@ -337,6 +449,7 @@ function setUpdateFields(locationId) {
 
 // Wenn man Abbrechen im AddScreen klickt, kommt MapScreen
 document.querySelector('#addCancelID').onclick = function(){
+    console.log("Update Cancel button clicked!");
     if(angemeldet){
         hideOthersAndShowMap();
     } else{
@@ -369,7 +482,7 @@ const addScreen = document.getElementById("addScreen");
         const city = document.getElementById("cityID").value;
 
         if(name && street && city) {
-            const description = document.getElementById("describtionID").value;
+            const describtion = document.getElementById("describtionID").value;
             const zip = document.getElementById("zipID").value;
             const lat = document.getElementById("latID").value;
             const lon = document.getElementById("lonID").value;
@@ -389,8 +502,8 @@ const addScreen = document.getElementById("addScreen");
             const newDetails = document.createElement("li");
             newDetails.innerHTML = `<div class="AllgemeineStandortBeschreibung">
             <p class="Adresse">Adresse: ${street}, ${zip} ${city}</p>
-            <p class="Bundesland">Bundesland :${bundesland}</p>
-            <p class="Beschreibung">Beschreibung: ${descriptsion}</p>
+            <p class="Bundesland">Bundesland: ${bundesland}</p>
+            <p class="Beschreibung">Beschreibung: ${describtion}</p>
             <p class="Latitude">Latitude: ${lat}</p>
             <p class="Longitude">Longitude: ${lon}</p>
             </div>`;
@@ -401,7 +514,10 @@ const addScreen = document.getElementById("addScreen");
             list.appendChild(newName);
             newName.appendChild(newDetails);
 
-            addLocationToArr(name, description, street, zip, city, lat, lon, bundesland);
+            id++;
+
+            addLocationToArr(name, describtion, street, zip, city, lat, lon, bundesland);
+            populateUpdateForm(newName);
     
             // Die Formularfelder leeren
             document.getElementById("nameID").value = "";
