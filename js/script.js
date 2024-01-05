@@ -1,0 +1,623 @@
+//ICON einfuegen 
+var leafIcon = L.icon({
+    iconUrl: 'http://leafletjs.com/examples/custom-icons/leaf-red.png',
+    shadowUrl: 'http://leafletjs.com/examples/custom-icons/leaf-shadow.png'
+});
+
+
+//KARTE einfuegen 
+var meineKarte = L.map('karte').setView([51.1657, 10.4515], 11);
+L.tileLayer('https://tile.openstreetmap.de/{z}/{x}/{y}.png', {
+    maxZoom: 100,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(meineKarte);
+
+//Setzt ein Punkt auf die Karte (mit dem Icon)
+var marker = L.marker([52.5295625,13.2383125], { icon: leafIcon }).addTo(meineKarte);  //Setzt Punkt in die Liste 
+marker.bindPopup("Müll Heizkraftwerk").openPopup(); //Öffntet ein Pop-up sobald mal auf den Punkt drückt
+
+ //Setzt ein Punkt auf die Karte (mit dem Icon)
+ var marker2 = L.marker([52.5374407951431,13.3472728336849], { icon: leafIcon }).addTo(meineKarte);  //Setzt Punkt in die Liste 
+marker2.bindPopup("Heizkraftwerk Moabit").openPopup(); //Öffntet ein Pop-up sobald mal auf den Punkt drückt
+
+ //Setzt ein Punkt auf die Karte (mit dem Icon)
+var marker3 = L.marker([52.487667277309974, 13.3116531306552], { icon: leafIcon }).addTo(meineKarte);  //Setzt Punkt in die Liste 
+marker3.bindPopup("Vattenfall Wärme Berlin AG, Heizkraftwerk Wilmersdorf").openPopup(); //Öffntet ein Pop-up sobald mal auf den Punkt drückt
+
+
+//Methoden Funktion für das ein und Ausblenden der Standort Liste
+function toggleListMenue() {
+    const ListmenueVar = document.getElementById("listeMenueID") /* gibt das Elemnt als Objekt wieder, dieses objekt wird in der Variable ListMenueVar gespeichert */
+   /*  console.log("Hello")  /*console = Ausgabe auf der Konsole im Tool */
+   /* console.log(ListmenueVar)   */ /*Hier wird das gespeicherte Objekt auf der Konsole ausgeben */ 
+   
+    /* Kurz was passiert hier=?
+        Hier wird geschaut ob das Objekt ListmenueVar die Klasse "versteckt" enthält
+        nun schau ich, anfangs enthält das Objekt ListmenueVar die KLasse "versteckt" nicht,
+        sodass ich in die Else- Bedingung springe und "versteckt" hinzufüge. ( Im CSS ist die Klasse versteckt als display:none dargestellt )
+        Nun enthält das Objekt die KLasse versteckt. Klicke ich nochmal auf die Dreierstriche 
+        wiederhole ich den Vorgang mit der If bedingung. Das heißt die KLasse "versteckt" ist im Objekt ListmenueVAr enthalten.
+        somit entferne ich die Klasse versteckt und die Liste wird angezeigt.
+
+    */
+    if(ListmenueVar.classList.contains("versteckt")) {
+        ListmenueVar.classList.remove("versteckt")
+    }
+    else{
+        ListmenueVar.classList.add("versteckt")     /* fügt div eine Klasse hinzu*/
+    }
+}
+
+/**********************
+ * ************** 
+ * Hier werden Script für den Zweiten Beleg dargestellt 
+ * **************
+ * ********************/
+
+
+let angemeldet = false;
+
+// Standortdaten als Liste von Objekten
+let standorte = [
+    {
+        name: "Müll Heizkraftwerk",
+        desc: "Heizkraftwerk ",
+        street: "Freiheit 24-25",
+        zip: "13597",
+        city: "Berlin",
+        state: "Deutschland",
+        lat: 52.5295625,
+        lon: 13.2383125
+    },
+    {
+        name: "Müll Heizkraftwerk Moabit",
+        desc: "Heizkraftwerk",
+        street: "Friedrich-Krause-Ufer",
+        zip: "13353",
+        city: "Berlin",
+        state: "Deutschland",
+        lat: 52.5374407951431,
+        lon: 13.3472728336849
+    },
+    {
+        name: "Vattenfall Wärme Berlin AG",
+        desc: "Heizkraftwerk",
+        street: "Kurfürstendamm 143",
+        zip: "10709",
+        city: "Berlin",
+        state: "Deutschland",
+        lat: 52.487667277309974,
+        lon: 13.3116531306552
+    }
+];
+
+// Der Admin 
+const admina = {
+    username: "admina", 
+    password: "password",
+    role: "admin"
+};
+
+//Der Normalo
+const normalo = {
+    username: "normalo", 
+    password: "password",
+    role: "non-admin"
+};
+
+
+/*Auführungsfunktion der Aktionen */
+const initScreensAddEventHandlers = function () {
+if (angemeldet === false) {
+    showLoginAndHideOthers();
+} else {
+    hideOthersAndShowMap();
+}
+
+document.getElementById("loginForm").onsubmit = checkLogin;
+
+
+//OnClickButton für den Add Screen 
+document.querySelector('#addID').onclick = function(){
+    if(angemeldet){
+        hideOthersAndShowAdd();
+    } else{
+        alert("Sie sind kein Admin! ")
+    }
+};
+
+let  currentUser = null; // aktueller User
+
+//OnClickButton für den Abmelde Button
+document.querySelector('#logoutID').onclick = function(){
+    if(angemeldet){
+        showLoginAndHideOthers();
+        currentUser = null;
+    } else{
+        alert("Passiert nichts..")
+    }
+};
+
+}
+
+//   Prüft den Login 
+function checkLogin(e) { 
+// e - the event obj
+// Why e.preventDefault()? 
+// What is the default behavior for a "submit": 
+// send request to server and get html back
+e.preventDefault();
+
+// get the values of the input fields
+const loginEntered = document.getElementById("usernameID").value;
+const passwordEntered = document.getElementById("passwordID").value;
+
+
+// check, if they are correct
+if (admina.username === loginEntered && admina.password === passwordEntered 
+    || normalo.username === loginEntered && normalo.password === passwordEntered ) {
+        // correct:
+        angemeldet = true;
+        hideOthersAndShowMap();
+       
+        if(loginEntered === admina.username){
+            currentUser= admina;
+        }else{
+            currentUser= normalo;
+        }
+        
+        // 
+        const addButton = document.querySelector('#addID');
+        if (angemeldet && currentUser.role === "admin") {
+            // Benutzer ist angemeldet und hat die Rolle "admin", zeige den Button an
+            addButton.style.display = 'block';            // console.log("Benutzer ist ein Admin. Zeige den Button an.");
+
+        } else {
+            // Benutzer hat keine Berechtigung, verstecke den Button
+            addButton.style.display = 'none';           // console.log("Benutzer ist kein Admin. Verstecke den Button.");
+        }
+
+} else {
+        // incorrect:
+    alert("Falscher Benutzername oder Passwort! ");
+    angemeldet = false;
+   
+}  
+}
+
+window.onload = initScreensAddEventHandlers; 
+
+//Zeigt den LoginScreen - Entfernt alle anderen Screen's
+function showLoginAndHideOthers () {
+document.getElementById("loginScreen").style.display = "block";
+document.getElementById("mapScreen").style.display = "none";
+document.getElementById("addScreen").style.display = "none";
+document.getElementById("updateScreen").style.display = "none";
+
+}
+
+//Zeigt den Mapcreen - Entfernt alle anderen Screen's
+function hideOthersAndShowMap() {
+document.getElementById("mapScreen").style.display = "block";
+document.getElementById("loginScreen").style.display = "none";
+document.getElementById("addScreen").style.display = "none";
+document.getElementById("updateScreen").style.display = "none";
+}
+
+//Zeigt den Mapcreen - Entfernt alle anderen Screen's
+function hideOthersAndShowUpdate() {
+    document.getElementById("mapScreen").style.display = "none";
+    document.getElementById("loginScreen").style.display = "none";
+    document.getElementById("addScreen").style.display = "none";
+    document.getElementById("updateScreen").style.display = "block";
+    }
+
+//Zeigt den Addcreen - Entfernt alle anderen Screen's
+const hideOthersAndShowAdd = function(){
+    if(angemeldet){
+        document.getElementById("addScreen").style.display = "block";
+        document.getElementById("loginScreen").style.display = "none";
+        document.getElementById("updateScreen").style.display = "none";
+        document.getElementById("mapScreen").style.display = "none";
+
+    }/* else if (angemeldet && normalo.role === "non-admin") {
+        alert("Sie sind kein Admin!");
+        document.getElementById("addID").style.display = "none"; // verstecke Button
+
+    } else {
+        alert("Unbekannter Benutzer!");
+    }*/
+};
+
+// Wenn man auf Liste klickt, kommt UpdateScreen
+/*document.querySelector('#ortID').onclick = function(){
+    //const loginEntered = document.getElementById("usernameID").value;
+    //let  currentUser = (loginEntered === admina.username) ? admina:normalo;
+    
+
+    if(angemeldet && currentUser.role === "non-admin") {
+        hideOthersAndShowUpdate();
+        document.getElementById("deleteID").style.display = "none";
+        document.getElementById("updateID").style.display = "none";
+         
+        // TODO: wenn man das zweite mal als admina anmeldet, 
+        // kann sie auch nicht standort bearbeiten oder löschen
+    } else if (angemeldet && currentUser.role === "admin") {
+        hideOthersAndShowUpdate();
+        document.getElementById("deleteID").style.display = "inline-block";
+        document.getElementById("updateID").style.display = "inline-block";
+    } else{
+        alert("Fehler");
+    }
+
+    fillUpdateFields(selectedLocation);
+};*/
+
+// Wenn man auf Liste klickt, kommt UpdateScreen
+document.getElementById('ortID').addEventListener ('click', function(event){
+    //const loginEntered = document.getElementById("usernameID").value;
+    //let  currentUser = (loginEntered === admina.username) ? admina:normalo;
+    if (event.target.tagName === 'LI') {
+        console.log("Clicked LI element: ", event.target);
+
+     //***04.12.23 **/
+    //Standort speichern und durch aufruf der FUnktion
+    //populateUpdateForm() Daten speichern und eig. auf das update Screen bringen
+    //04.12.23
+    const selectedName = event.target.firstChild.textContent.trim() || event.target.innerText.trim();
+    console.log("Slected Name : ", selectedName);      //Zeige mir den Standort an 
+    console.log("Standorte array: ", standorte);
+    populateUpdateForm(selectedName);
+    }
+
+    if(angemeldet && currentUser.role === "non-admin") {
+        hideOthersAndShowUpdate();
+        document.getElementById("deleteID").style.display = "none";
+        document.getElementById("updateID").style.display = "none";
+         
+        // TODO: wenn man das zweite mal als admina anmeldet, 
+        // kann sie auch nicht standort bearbeiten oder löschen
+    } else if (angemeldet && currentUser.role === "admin") {
+        hideOthersAndShowUpdate();
+        document.getElementById("deleteID").style.display = "inline-block";
+        document.getElementById("updateID").style.display = "inline-block";
+    } else{
+        alert("Fehler");
+    }
+
+    fillUpdateFields(selectedLocation);
+
+});
+
+locations = [];
+let id = 1;
+
+function addLocationToArr(name, describtion, street, zip, city, lat, lon, bundesland) {
+    const newLocation = {
+        id: id,
+        name: name,
+        describtion: describtion,
+        street: street,
+        zip: zip,
+        city: city,
+        lat: lat,
+        lon: lon,
+        bundesland: bundesland
+    };
+
+    id++;
+    locations.push(newLocation);
+}
+
+// Funktion zum Aktualisieren der Standortliste
+function updateLocationList() {
+    const listElement = document.getElementById("ortID");
+    // Leere die Liste
+    listElement.innerHTML = "";
+
+    // Füge die Standorte der Liste hinzu
+    for (const location of locations) {
+        const listItem = document.createElement("li");
+        listItem.textContent = location.name;
+
+        const detailsItem = document.createElement("li");
+        detailsItem.innerHTML = `<div class="AllgemeineStandortBeschreibung">
+            <p class="Adresse">Adresse: ${location.street}, ${location.zip} ${location.city}</p>
+            <p class="Bundesland">Bundesland: ${location.bundesland}</p>
+            <p class="Beschreibung">Beschreibung: ${location.describtion}</p>
+            <p class="Latitude">Latitude: ${location.lat}</p>
+            <p class="Longitude">Longitude: ${location.lon}</p>
+            </div>`;
+
+        listElement.appendChild(listItem);
+        listItem.appendChild(detailsItem);
+    }
+}
+
+
+document.querySelector('#deleteID').onclick = function() {
+    if (angemeldet && currentUser.role === "admin") {
+        const locationIdToDelete = 1; //TODO noch ändern
+        const confirmed = confirm("Möchten Sie diesen Standort wirklich löschen?");
+        if (confirmed) {
+
+            const locationIndex = locations.findIndex(location => location.id === locationIdToDelete);
+
+            if (locationIndex !== -1) {
+                // Standort aus der Liste entfernen
+                
+                locations.splice(locationIndex, 1);
+
+                alert("Standort erfolgreich gelöscht!");
+                hideOthersAndShowMap(); // Zurück zur Karte 
+
+                /*delete locations[locationIdToDelete].name               
+                locations[locationIdToDelete].describtion = null;
+                locations[locationIdToDelete].street = null;
+                locations[locationIdToDelete].zip = null;
+                locations[locationIdToDelete].city = null;
+                locations[locationIdToDelete].lat = null;
+                locations[locationIdToDelete].lon = null;
+                locations[locationIdToDelete].bundesland = null;*/
+
+                updateLocationList(); // Aktualisiere die Standortliste
+
+            } else {
+                alert("Fehler beim Löschen des Standorts! Standort nicht gefunden.");
+            }
+        }
+    } else {
+        alert("Fehler beim Löschen des Standorts!");
+    }
+}
+
+//Die Funktion setzt die Werte auf den Update/Delete Screen 
+function populateUpdateForm(selectedLocationName) {
+    console.log("Selected Location Name:", selectedLocationName);
+    console.log("Standorte:", standorte);
+    // Finde den ausgewählten Standort im Array
+    const selectedLocationObj = standorte.find(loc => loc.name.trim() === (typeof selectedLocationName === 'string' ? selectedLocationName.trim() : selectedLocationName));
+
+    if (selectedLocationObj) {
+        // Fülle die Formularfelder mit den Informationen des ausgewählten Standorts
+        setValueIfExists("updateNameID", selectedLocationObj.name);
+        setValueIfExists("updateDescribtionID", selectedLocationObj.desc);
+        setValueIfExists("updateStreetID", selectedLocationObj.street);
+        setValueIfExists("updateZipID", selectedLocationObj.zip);
+        setValueIfExists("updateCityID", selectedLocationObj.city);
+        setValueIfExists("updateBundeslandID", selectedLocationObj.state);
+        setValueIfExists("updateLatID", selectedLocationObj.lat);
+        setValueIfExists("updateLonID", selectedLocationObj.lon);
+    } else {
+        console.error("Standort nicht gefunden!");
+    }
+}
+
+//ÜberPrüfung des Standortes mit den Werten, wenn es nicht vorhanden ist, setzte nichts
+function setValueIfExists(elementId, value) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        element.value = value || ''; // Setze den Wert, falls vorhanden, ansonsten leeren String
+    } else {
+        console.error("Element mit ID ${elementId} nicht gefunden!");
+    }
+}
+
+//Funktion fügt Standorte zur StandortListe hinzu
+function addLocationToArr(name, description, street, zip, city, lat, lon, bundesland) {
+    const newLocation = {
+        name: name,
+        desc: description,
+        street: street,
+        zip: zip,
+        city: city,
+        lat: lat,
+        lon: lon,
+        state: bundesland
+    };
+
+    standorte.push(newLocation);
+    return newLocation;
+}
+
+// Wenn man Abbrechen im UpdateScreen klickt, kommt MapScreen
+document.querySelector('#updateCancelID').onclick = function(){
+    if(angemeldet){
+        hideOthersAndShowMap();
+    } else{
+        alert("Unbekannter Fehler");
+    }
+};
+
+function setUpdateFields(locationId) {
+    const location = locationsArray.find(loc => loc.id === locationId);
+
+    if (location) {
+        document.getElementById("updateNameID").value = location.name;
+        document.getElementById("updateDescribtionID").value = location.describtion;
+        document.getElementById("updateStreetID").value = location.street;
+        document.getElementById("updateZipID").value = location.zip;
+        document.getElementById("updateCityID").value = location.city;
+        document.getElementById("updateBundeslandID").value = location.bundesland;
+        document.getElementById("updateLatID").value = location.lat;
+        document.getElementById("updateLonID").value = location.lon;
+    } else {
+        console.error("Standort nicht gefunden!");
+    }
+}
+
+
+// Wenn man Abbrechen im AddScreen klickt, kommt MapScreen
+document.querySelector('#addCancelID').onclick = function(){
+    console.log("Update Cancel button clicked!");
+    if(angemeldet){
+        hideOthersAndShowMap();
+    } else{
+        alert("Unbekannter Fehler");
+    }
+};
+
+// Wenn man add klickt im AddScreen kommt MainScreen
+document.querySelector('#plusID').onclick = function(){
+    if(angemeldet){
+        hideOthersAndShowMap();
+        // Daten speichern
+        //TODO Pop up
+    } else{
+        alert("Unbekannter Fehler");
+    }
+};
+
+const addScreen = document.getElementById("addScreen");
+
+
+  // Funktion zum Behandeln des Absendens des Formulars zum Hinzufügen eines Standorts
+  document.getElementById("plusID").addEventListener("click", function (event) {
+    event.preventDefault();
+  
+    // Werte aus dem Formular erhalten
+    if(addScreen.style.display === "none") {
+        const name = document.getElementById("nameID").value;
+        const street = document.getElementById("streetID").value;
+        const city = document.getElementById("cityID").value;
+
+        if(name && street && city) {
+            const describtion = document.getElementById("describtionID").value;
+            const zip = document.getElementById("zipID").value;
+            const lat = document.getElementById("latID").value;
+            const lon = document.getElementById("lonID").value;
+            const bundesland = document.getElementById("bundeslandID").value;
+
+            if(lat && lon) {
+                displayMarkerOnMap(parseFloat(lat),parseFloat(lon),name)
+            }
+
+            // Den neuen Standort zur Liste hinzufügen
+            const list = document.getElementById("ortID");
+            const newName = document.createElement("li");
+            newName.id = `listItem_${location.id};`
+            newName.textContent = `${name}`;
+            newName.style.marginBottom = "167px";
+
+            const newDetails = document.createElement("li");
+            newDetails.innerHTML = `<div class="AllgemeineStandortBeschreibung">
+            <p class="Adresse">Adresse: ${street}, ${zip} ${city}</p>
+            <p class="Bundesland">Bundesland: ${bundesland}</p>
+            <p class="Beschreibung">Beschreibung: ${describtion}</p>
+            <p class="Latitude">Latitude: ${lat}</p>
+            <p class="Longitude">Longitude: ${lon}</p>
+            </div>`;
+
+            newDetails.style.marginBottom = "0px";
+            newDetails.style.padding = "0px";
+
+            list.appendChild(newName);
+            newName.appendChild(newDetails);
+
+            id++;
+
+            addLocationToArr(name, describtion, street, zip, city, lat, lon, bundesland);
+            populateUpdateForm(newName);
+    
+            // Die Formularfelder leeren
+            document.getElementById("nameID").value = "";
+            document.getElementById("describtionID").value = "";
+            document.getElementById("streetID").value = "";
+            document.getElementById("zipID").value = "";
+            document.getElementById("cityID").value = "";
+            document.getElementById("latID").value = "";
+            document.getElementById("lonID").value = "";
+
+        } else {
+            alert("Name, Straße und Stadt sind erforderlich!");
+            hideOthersAndShowAdd();
+        }
+    }
+});
+  
+
+    // Beispiel-Funktion zum Anzeigen eines Markers auf der Karte (ersetze dies durch deine Kartenimplementierung)
+    function displayMarkerOnMap(lat, lon) {
+    const mapElement = document.getElementById("karte");
+  
+    // Ersetze die folgende Zeile durch deinen tatsächlichen Code zum Hinzufügen eines Markers zur Karte
+    mapElement.innerHTML = `Marker hinzugefügt bei LAT: ${lat}, LON: ${lon}`;
+  }
+  
+  function displayMarkerOnMap(lat, lon, name) {
+    const mapElement = document.getElementById("karte");
+
+    // Erstelle einen neuen Marker mit dem Icon
+    const newMarker = L.marker([lat, lon], { icon: leafIcon }).addTo(meineKarte);
+    newMarker.bindPopup(name).openPopup(); // Zeige den Standortnamen im Popup an
+
+    // Ersetze die folgende Zeile durch deinen tatsächlichen Code zum Hinzufügen eines Markers zur Karte
+    // mapElement.innerHTML = `Marker hinzugefügt bei LAT: ${lat}, LON: ${lon}`;
+    }
+
+
+
+
+
+
+/* Bist du admin? Oder non-Admin?
+function checkUserRole() {
+    const addButton = document.querySelector('#addID');
+    console.log("Angemeldet:", angemeldet);
+    console.log("Rolle (admina):", admina.role);
+    console.log("Rolle (normalo):", normalo.role);
+
+    if (angemeldet && currentUser.role === "admin") {
+        // Benutzer ist angemeldet und hat die Rolle "admin", zeige den Button an
+        console.log("Benutzer ist ein Admin. Zeige den Button an.");
+
+        addButton.style.display = 'block';
+    } else {
+        // Benutzer hat keine Berechtigung, verstecke den Button
+        console.log("Benutzer ist kein Admin. Verstecke den Button.");
+
+        addButton.style.display = 'none';
+    }
+}
+*/
+
+
+
+
+
+/*
+//Globalen JS-Objekte Müllheizkraftwerk
+let lockMuellHeizkraftwerk = {
+    name: "Müll Heizkraftwerk",
+    desc: "Heizkraftwerk ", 
+    street: "Freiheit 24-25",
+    zip: "13597", 
+    city: "Berlin",
+    state: "Deutschland",
+    lat: 52.5295625,
+    lon: 13.2383125
+};
+
+//Globalen JS-Objekte Vatenfall Wärme
+let lockVattenfallWaerme = {
+    name: "Vatenfall Wärme Berlin AG",
+    desc: "Heizkraftwerk", 
+    street: "Kurfürstendamm 143",
+    zip: "10709", 
+    city: "Berlin",
+    state: "Deutschland",
+    lat: 52.487667277309974,
+    lon: 13.3116531306552
+};
+
+//Globalen JS-Objekte Heizkraftwerk Moabit
+let lockMuellHeizkraftwerkMoabit = {
+    name: "Müll Hiezkraftwerk Moabit ",
+    desc: "Müll Heizkraftwerk", 
+    street: "Friedrich-Krause-Ufer",
+    zip: "13353", 
+    city: "Berlin",
+    state: "Deutschland",
+    lat: 52.5374407951431,
+    lon: 13.3472728336849
+};*/

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>UmweltschadensorteBB</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <!-- Gehört zum leaflet also der Karte -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+       crossorigin="" />
+  </head>
+
+<body>
+
+
+    <!----------------------------- LOGIN SCREEN ------------------------------------------->
+
+    <div class="login-container" id="loginScreen">
+        <h1>UmweltschadensorteBB</h1>
+        <h2>Herzlich Willkommen</h2>
+        <p>Diese Website dient dem Zweck 
+            <br>umweltschädliche Standorte innerhalb Berlins<br> und 
+            Brandenburgs zu lokalisiern und zu dokumentieren.</p>
+        <br>
+        <br>
+        <form id="loginForm">
+            <h3><strong>Anmeldeformular</strong></h3>
+            <br />
+            <!--<label for="username">Benutzername: </label>-->
+            <input type="text" id="usernameID" name="username" placeholder="Benutzername" required />
+            <br />
+            <br />
+            <!--<label for="password">Passwort: </label>-->
+            <input type="password" id="passwordID" name="password" placeholder="Passwort" required />
+            <br />
+            <br />
+            <button type="submit">Anmelden</button>
+        </form>
+    </div>
+
+    <!------------------------- MAIN SCREEN ------------------------------------------>
+
+    
+    <div class="main-container" id="mapScreen">
+        <h1> Willkommen bei UmweltschadensorteBB!</h1>
+        <p id="einleitung">Lokaliere ein Ort, das die Umwelt schadet direkt auf der Karte oder gebe die Informationen manuell ein</p>
+    <div id="ListMenueParent">
+        <!--Hier sollen die Standorte angezeigt werden-->
+        <div class="listenMenue" id="listeMenueID">
+            <h3>Standorte</h3>
+            <ul id="ortID">
+                <li class="location-item" data-id="1">Vattenfall Wärme Berlin AG
+                    <div class="AllgemeineStandortBeschreibung">
+                        <p class="Adresse">Adresse: Kurfürstendamm 143, 10709 Berlin</p>
+                        <p class="Beschreibung">Beschreibung: Heizkraftwerk</p>
+                    </div>
+                </li>
+                <li class="location-item" data-id="2">Müll Heizkraftwerk 
+                    <div class="AllgemeineStandortBeschreibung">
+                        <p class="Adresse">Adresse: Freiheit 24-25,13597 Berlin</p>
+                        <p class="Beschreibung">Beschreibung:  </p>
+                    </div>
+                </li>
+                <li class="location-item" data-id="3" >Müll Heizkraftwerk Moabit
+                    <div class="AllgemeineStandortBeschreibung">
+                        <p class="Adresse">Adresse: Friedrich-Krause-Ufer,13353 Berlin</p>
+                        <p class="Beschreibung">Beschreibung:  Heizkraftwerk </p>
+                    </div>
+                </li>
+            </ul>
+            <div class="button-container">
+                 <button id="addID" type="add">Hinzufügen</button>
+                 <hr/>
+                <button id="logoutID" type="logout">Abmelden </button>
+
+            </div>
+        </div>
+    </div>
+         <!--Hier kommen die drei Striche raus-->
+         <div class="dreierStriche" id="dreierStriche" onclick="toggleListMenue()">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <div class="map" id="karte"></div>
+    </div>
+ 
+    </div>
+
+    <!---------------------------------- ADD SCREEN ------------------------------------------>
+
+    <div class="add-container" id="addScreen">
+        <br />
+        <br />
+        <form>
+            <h3>Füge einen Standort hinzu! </h3>
+            <hr/>
+            <label for="name">Name</label>
+            <input type="text" id="nameID" name="name" required />
+
+            <label for="describtion">Beschreibung</label>
+            <textarea type="text" id="describtionID" name="describtion"></textarea>
+
+            <label for="street">Straße</label>
+            <input type="text" id="streetID" name="street" required />
+
+            <label for="zip">Postleitzahl</label>
+            <input type="text" id="zipID" name="zip" pattern="[0-9]{5}"
+                title="Bitte geben Sie eine fünfstellige Ziffer ein">
+
+            <label for="city">Stadt</label>
+            <input type="text" id="cityID" name="city" required />
+
+            <label for="bundesland">Bundesland</label>
+            <select id="bundeslandID" name="bundesland">
+                <option value="Berlin">Berlin</option>
+                <option value="Brandenburg">Brandenburg</option>
+            </select>
+
+            <label for="lat">LAT</label>
+            <input type="text" id="latID" name="lat">
+
+            <label for="lon">LON</label>
+            <input type="text" id="lonID" name="lon">
+            <br />
+            <br />
+
+            <div class="button-container-add">
+                <button id="addCancelID" type="cancel">Abbrechen</button>
+                <button id="plusID" type="add">Hinzufügen</button>
+            </div>
+        </form>
+        <br />
+        <br />
+    </div>
+
+    <!------------------------------- UPDATE / DELETE SCREEN ------------------------------------------>
+
+    <div class="update-container" id="updateScreen">
+        <br />
+        <br />
+        <form>
+            <h3>Aktualisiere einen Standort! </h3>
+            <hr />
+            <label for="updatename">Name</label>
+            <input type="text" id="updateNameID" name="name" required />
+
+            <label for="updateDescribtion">Beschreibung</label>
+            <textarea type="text" id="updateDescribtionID" name="describtion"></textarea>
+
+            <label for="updateStreet">Straße</label>
+            <input type="text" id="updateStreetID" name="street" required>
+
+            <label for="updateZip">Postleitzahl</label>
+            <input type="text" id="updateZipID" name="zip" pattern="[0-9]{5}"
+                title="Bitte geben Sie eine fünfstellige Ziffer ein">
+
+            <label for="updateCity">Stadt</label>
+            <input type="text" id="updateCityID" name="city" required>
+
+            <label for="updateBundesland">Bundesland</label>
+            <select id="updateBundeslandID" name="bundesland">
+                <option value="Berlin">Berlin</option>
+                <option value="Brandenburg">Brandenburg</option>
+            </select>
+
+            <label for="updateLat">LAT</label>
+            <input type="text" id="updateLatID" name="lat">
+
+            <label for="updateLon">LON</label>
+            <input type="text" id="updateLonID" name="lon">
+            <br />
+            <br />
+            <button id="updateCancelID" type="cancel">Abbrechen</button>
+            <button id="deleteID" type="delete">Löschen</button>
+            <button id="updateID" type="update">Aktualisieren</button>
+        </form>
+        <br />
+        <br />
+    </div>
+
+    <footer>
+        <a href="https://www.htw-berlin.de/impressum/" target="_blank">Impressum</a>
+        &thinsp; | &thinsp;
+        <a href="https://www.htw-berlin.de/datenschutz/" target="_blank">Datenschutz</a>
+    </footer>
+
+</body>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="js/script.js"></script>
+</html>
