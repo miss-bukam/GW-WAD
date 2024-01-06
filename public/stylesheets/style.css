@@ -1,0 +1,525 @@
+/******************************************** LOGIN SCREEEN ***********************************************/
+
+/* Der ganze Login- Screen -> alle Eigenschaften*/
+.login-container {
+  display: grid;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(rgba(140, 140, 140, 0.7), rgba(0, 0, 0, 0.7)), url('fabrik.jpeg');
+  background-position: center;
+  background-size: cover;
+}
+
+/* Das ist die Form des Andmeldeformular's */
+.login-container form {
+  display: block;
+  text-align: center;
+  margin: 0 auto;  
+  width: 300px;
+  border: 1px solid transparent;
+  background-position: center;
+  background-size: cover;
+  padding: 20px; 
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.801);
+  box-shadow: 3px 3px 4px rgba(0.5, 0.5, 0.5, 0.5);
+}
+
+/*Eingabefelder für Benutzer und password*/
+.login-container input {
+  padding: 10px;
+  padding-left: 15px;
+  font-size: 15px;
+  width: 150px;
+  border-radius: 20px;
+  border-color: transparent;
+  box-shadow: 0px 1px 2px rgba(0.5, 0, 0, 0.5);
+}
+
+/* Eigenschaften der Platzhalter (Benutzer und passwort)*/
+input::placeholder {
+  color: #c3c3c3;
+}
+
+/* Eigenschaften des Anmelde- Button's */
+.login-container button {
+  margin: 10px; 
+  margin-bottom: 5px;
+  padding: 10px;
+  width: 180px; 
+  border-color: transparent;   
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  color: white;
+  border-radius: 20px;
+  background-color: #e2755c;
+}
+
+/*Um ein Side-Effekt zu haben beim überfliegen des Anmelde Button's*/
+.login-container button:hover{
+  background-color: #ca6c57;
+}
+
+
+/* Haupt-Titel EIgenschaften des Login-Screen's*/
+.login-container h1 {
+  color: white;
+  font-size: 70px;
+  letter-spacing: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
+}
+
+/*Einleitungstext Eigenschaften*/
+.login-container p {
+  color:black;
+  letter-spacing: 2px;
+  font-size: 25px;
+}
+
+/*Begrüßung Eigenschaften*/
+.login-container h2 {
+  font-size: 30px;
+  letter-spacing: 1px;
+}
+
+/*Anmeldeformular Titel*/
+.login-container h3 {
+  letter-spacing: 3px;
+  font-size: 20px;
+  color: black;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+/*Hintergrund von Begrüßung und Einleitung*/
+.login-container h2, p {
+  text-align: center;
+  border: 1px solid white;
+  background-color: rgba(255, 255, 255, 0.801);
+  width: 100%;
+  padding: 12px;
+  color: black;
+  margin: 6px;
+}
+
+/****************************************** MAIN SCREEN *****************************************/
+
+/* Es ist der Container für die Dreier Striche und die Liste der Standorte */
+#navigationListe { 
+  display: flex;
+  position: relative;
+  justify-content: flex-end;
+  align-items: center;
+  height: 10px;
+  width: 1100px;
+  z-index: 2; /* nächstes Stapelreihenfolge 2 */
+}
+
+/* Hier sind Eigenschaften der DreierLinien für das Pop-Up*/
+.dreierStriche {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column; /* Elemente werden von oben nach unten angeordnet*/
+  top: 10px;
+  margin-right: 370px;
+  width: 99%;
+  padding: 2px 5px;
+  z-index: 2;
+  border: 2px solid #3e3e3e;
+  background-color:  #3e3e3e;
+  position: relative;
+
+}
+
+/* Hier sind die Eigenschaften der Linien der Dreierstriche*/
+.line {
+  width: 25px; 
+  height: 4px; 
+  background-color: white;
+  margin: 3px 0;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+/* Hier werden alle Standorte ausgegeben, nach dem ich auf das Dreier-Zeichen rüberfahre */
+.listenMenue {
+  
+  position: absolute;
+  top: 65px;
+  left: 50px;
+  height:650px; 
+  width: 450px;  
+  border-radius: 10px;
+  font-size: 16px;
+  z-index: 3;         /* nächstes Stapelreihenfolge 3 */
+  border: 1px solid  rgb(209, 208, 184);
+  backdrop-filter: blur(30px) ;
+  overflow-y: auto;
+}
+
+/*Eine KLasse für StandortListe*/
+.versteckt{
+  display: none;
+}
+
+/*Ober Klasse von der Liste*/
+#ListMenueParent {
+  position: relative;
+  z-index: 4;
+}
+
+/* Eine subDivison für die Beschreibungen der Standorte*/
+.AllgemeineStandortBeschreibung{
+  display: none;
+  font-size: 12px;
+}
+
+/* Anzeige in Listen Form der Beschreibung */
+li .AllgemeineStandortBeschreibung {
+  display: block;   
+  margin-top: 5px;
+  margin-right: 35px;
+  border-radius: 20px;
+}
+
+/*Listenansicht der Standorte-Rahmen*/
+li .AllgemeineStandortBeschreibung p{
+  border-radius: 10px;
+}
+
+/* ungeordenete Liste und listenelemente im Listen-popup für die Trennlinie (der Standorte )*/
+ul {
+  list-style: none;
+  padding: 5px 5px;
+  font-size: 15px;
+  height: auto;
+}
+
+/*Eigenschaften der Standorte in der StandortListe*/
+li {
+  margin-top: 15px;
+  padding: 10px;
+  padding-bottom: 10px; 
+  border-bottom: 1px solid #ccc;
+  font-size: 15px;
+  height: 80px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Der login Button */
+.listenMenue .button-container button#addID {
+  margin-top: 20px;
+  margin-left: 75%;
+  padding: 9px;
+  font-size: 15px;
+  border-radius: 20px;
+  background-color: #e2755c;
+  color: white;
+  border-color: transparent;
+  letter-spacing: 0.5px;
+}
+
+/*Um ein Side-Effekt zu haben beim überfliegen des hinzufüge Button's*/
+.listenMenue .button-container button#addID:hover {
+  background-color: #ca6c57;
+}
+
+/* Der logout Button */
+.listenMenue .button-container button#logoutID {
+  padding: 8px;
+  width: 80px;
+  font-size: 13px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  margin-left: 40%;
+  border-radius: 20px;
+  background-color: #e2755c;
+  color: white;
+  border-color: transparent;
+  letter-spacing: 0.5px;
+}
+
+/*Um ein Side-Effekt zu haben beim überfliegen des abmelde Button's*/
+.listenMenue .button-container button#logoutID:hover {
+  background-color: #ca6c57;
+}
+
+/* Das gehört zu den Eigenschaften der Map */
+.main-container .map {
+  width: auto;
+  height: 700px;
+  padding-left: 10px; 
+  padding-top: 5px;
+  position: relative;
+  margin-top: 10px;
+  z-index: 1;/* dient als stapelreihenfolge fest,zuerst kommt die map, dann die Popups*/
+}
+
+/*Fußzeile mit Datenschutz etc.*/
+footer {
+  font-size: 17px;
+  padding: 15px 15px;
+  text-align: center;
+}
+
+/*Fußzeile Ohne Strich*/
+footer a{
+  font-size: 17px;
+  color: black;
+}
+
+/*Um ein Side-Effekt zu haben beim überfliegen der Fußzeile*/
+footer a:hover{
+  color: blue;
+}
+
+/* Begrüßungssheading Eigenschaften */
+h1 {
+  text-align: center;
+  font-size: 35px;
+  letter-spacing: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+/* Das Heading für die => Standorte in der Liste */
+.listenMenue h3 {
+  text-align: center;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  letter-spacing: 3px;
+} 
+
+/*Einleitungstext Eigenschaften*/
+#einleitung{
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
+li:hover {
+  color: rgb(106, 106, 106);
+}
+
+/************************************************** ADD SCREEN ***********************************/
+/*Eigenschaften des Add-Screens*/
+.add-container {
+  background: linear-gradient(rgba(140, 140, 140, 0.7), rgba(0, 0, 0, 0.7)), url('fabrik.jpeg');
+  background-position: center;
+  background-size: cover;
+} 
+
+/*Form des Hinzufüge Formular*/
+.add-container form {
+  display:block;
+  text-align: center;
+  margin: 0 auto;
+  /*mini rahmen*/
+  background-color: rgb(233, 224, 220);
+  /*background: linear-gradient(rgba(140, 140, 140, 0.7), rgba(0, 0, 0, 0.7)),url('fabrik.jpeg');*/
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 20px;
+  width: 400px;
+}
+
+/*Beschriftung des Formulars*/
+.add-container label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+/*Eingabefelder Eigeschaften*/
+.add-container input,
+select {
+  width: 200px;
+  padding: 10px;
+  padding-left: 15px;
+  font-size: 15px;
+  border-radius: 20px;
+  border-color: transparent;
+  box-shadow: 0px 1px 2px rgba(0.5, 0, 0, 0.5);
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+/*Text Are für die Beschreibung*/
+.add-container textarea {
+  width: 250px;
+  height: 80px;
+  padding: 17px;
+  padding-top: 10px;
+  padding-left: 20px;
+  font-size: 15px;
+  border-radius: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+  border-color: transparent;
+  box-shadow: 0px 1px 2px rgba(0.5, 0, 0, 0.5);
+  resize: none;
+}
+
+/*Zahleneingabe LONGITUDE/LATITUDE...*/
+.add-container input#zipID,
+input#latID,input#lonID {
+  width: 110px;
+}
+
+/*Titel */
+.add-container h3 {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+
+/*Alle eigenschaften der Buttons*/
+.add-container button {
+  padding: 10px;
+  text-align: center;
+  font-size: 15px;
+  margin-top: 25px;
+  margin-left: 25px;
+  margin-right: 25px;
+  border-radius: 20px;
+  background-color: #e2755c;
+  color: white;
+  border-color: transparent;
+  letter-spacing: 0.5px;
+}
+
+/*AbbruchButton Eigenschaften*/
+.add-container #addCancelID {
+  background-color: rgb(134, 134, 134);
+}
+
+/*Um ein Side-Effekt Button abbruch*/
+.add-container #addCancelID:hover {
+  background-color: rgb(125, 125, 125);
+}
+
+/*Um ein Side-Effekt hinzufügeButton*/
+.add-container button:hover {
+  background-color: #ca6c57;
+}
+
+/***************************** UPDATE DELETE SCREEN */
+
+/*Eigenschaften des Update-Screens*/
+.update-container {
+  background: linear-gradient(rgba(140, 140, 140, 0.7), rgba(0, 0, 0, 0.7)), url('fabrik.jpeg');
+  background-position: center;
+  background-size: cover;
+}  
+
+
+/*Form des Update- Formular*/
+.update-container form {
+  text-align: center;
+  margin: 0 auto;
+  background-color: rgb(233, 224, 220);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  border-radius: 20px;
+  width: 400px;
+}
+
+/*Beschriftung des Formulars*/
+.update-container label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/*Eingabefelder Eigeschaften*/
+.update-container input,
+select {
+  width: 200px;
+  padding: 10px;
+  padding-left: 15px;
+  font-size: 15px;
+  border-radius: 20px;
+  border-color: transparent;
+  box-shadow: 0px 1px 2px rgba(0.5, 0, 0, 0.5);
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+/*Texteingabe formular für Beschriebung*/
+.update-container textarea {
+  width: 250px;
+  height: 80px;
+  padding: 17px;
+  padding-top: 10px;
+  padding-left: 20px;
+  font-size: 15px;
+  border-radius: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+  border-color: transparent;
+  box-shadow: 0px 1px 2px rgba(0.5, 0, 0, 0.5);
+  resize: none;
+}
+
+/*Eingabefelder Eigeschaften,LONG/LAT*/
+.update-container input#zipID,
+input#latID,input#lonID {
+  width: 110px;
+}
+
+/*Heading des Update Screen's*/
+.update-container h3 {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+  font-size: 20px;
+}
+
+/*Alle Buttons Eigenschaften*/
+.update-container button {
+  padding: 10px;
+  text-align: center;
+  font-size: 15px;
+  margin-top: 25px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 20px;
+  background-color: rgb(134, 134, 134);
+  color: white;
+  border-color: transparent;
+  letter-spacing: 0.5px;
+}
+
+/*Um ein Side-Effekt Button's*/
+.update-container button:hover {
+  background-color: rgb(125, 125, 125);
+}
+
+/*Eigenschaften der LöschungButton*/
+#deleteID {
+  background-color: #af3a3a;
+}
+
+/*Um ein Side-Effekt löscheButton*/
+#deleteID:hover {
+  background-color: #9f3535;
+}
+
+/*Eigenschaften der UpdateButton*/
+#updateID {
+  background-color:rgb(77, 122, 77)
+}
+
+/*Um ein Side-Effekt Updtae Button*/
+#updateID:hover {
+  background-color:rgb(71, 112, 71)
+}
