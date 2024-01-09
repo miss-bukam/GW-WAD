@@ -80,23 +80,50 @@ MongoCRUDs.prototype.findAllLocs  = async function() {
   }
 };
 
-// Gibt einen Standort mit der angegebenen ID zurück
+//TODO: mache das selbe für ein Standort
 MongoCRUDs.prototype.findOneLocation = async function(locationId) {
   const client = new MongoClient(uri);
   try {
-    console.log('Starte findOneLocation mit ID:', locationId);
-
     const database = client.db(db_name);
     const locs = database.collection('locations');
-    const query = { id: parseInt(locationId, 10) };
+    const query = { _id: new ObjectId(locationId) };
     const loc = await locs.findOne(query);
     return loc;
   } finally {
     await client.close();
   }
-}
+};
 
+//löscht Standort
+MongoCRUDs.prototype.deleteOneLocation = async function(locationId){
+  const client = new MongoClient(uri);
+  try {
+    const database = client.db(db_name);
+    const locs = database.collection('locations');
+    const query = { _id: new ObjectId(locationId) };
+    const result = await locs.deleteOne(query);
+    return result.deletedCount > 0;
+  } finally {
+    await client.close();
+  }
+};
 
+//Updated ein Standort
+MongoCRUDs.prototype.updateOne = async function(locationId){
+  const client = new MongoClient(uri);
+  try {
+    const database = client.db(db_name);
+    const locs = database.collection('locations');
+    const query = { _id: new ObjectId(locationId) };
+    const update = {
+      $set: updatedData
+    };
+    const result = await locs.updateOne(query, update);
+    return result.modifiedCount > 0;
+  } finally {
+    await client.close();
+  }
+};
 
 const mongoCRUDs = new MongoCRUDs(db_name, uri);
 
