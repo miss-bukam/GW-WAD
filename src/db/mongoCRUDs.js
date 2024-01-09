@@ -93,7 +93,6 @@ MongoCRUDs.prototype.findOneLocation = async function(locationId) {
     await client.close();
   }
 };
-
 //löscht Standort
 MongoCRUDs.prototype.deleteOneLocation = async function(locationId){
   const client = new MongoClient(uri);
