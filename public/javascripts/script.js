@@ -129,10 +129,6 @@ document.getElementById("loginForm").onsubmit = checkLogin;
 
 // Prüft den Login 
 async function checkLogin(e) { 
-// e - the event obj
-// Why e.preventDefault()? 
-// What is the default behavior for a "submit": 
-// send request to server and get html back
 e.preventDefault();
 
 // get the values of the input fields
@@ -233,17 +229,18 @@ const hideOthersAndShowAdd = function(){
   }*/
 }
 
+
 // Wenn man auf Liste klickt, kommt UpdateScreen
 document.getElementById('ortID').addEventListener ('click', async function(event){
   if (event.target.tagName === 'LI') {
       console.log("Clicked LI element: ", event.target);
   //Standort speichern und durch aufruf der FUnktion
   //populateUpdateForm() Daten speichern und eig. auf das update Screen bringen
-  //const selectedName = event.target.firstChild.textContent.trim() || event.target.innerText.trim();
+  const selectedName = event.target.firstChild.textContent.trim() || event.target.innerText.trim();
   const selectedLocation = await mongoCRUDs.findOneLocation(selectedName);
 
   console.log("Selected Standort : ", selectedLocation);      //Zeige mir den Standort an 
-  console.log("Standorte array: ", standorte);
+  //console.log("Standorte array: ", standorte);
   populateUpdateForm(selectedLocation);
   }
 
@@ -267,21 +264,17 @@ document.getElementById('ortID').addEventListener ('click', async function(event
   } else{
       alert("Fehler");
   }
-
 });
 
 //Die Funktion setzt die Werte auf den Update/Delete Screen 
 async function populateUpdateForm(selectedLocationName) {
-  // Finde den ausgewählten Standort im Array
-  //const selectedLocationObj = standorte.find(loc => loc.name.trim() === (typeof selectedLocationName === 'string' ? selectedLocationName.trim() : selectedLocationName));
-
   //standorte aus der Datenbank
-  const selectedLocationObj = await mongoCRUDs.findOneLoc(selectedLocationName);
+  const selectedLocationObj = await mongoCRUDs.findOneLocation(selectedLocationName);
 
   if (selectedLocationObj) {
     console.log("Selected Location: ", selectedLocation);
 
-      // Fülle die Formularfelder mit den Informationen des ausgewählten Standorts
+      // Informationen des ausgewählten Standorts
       setValueIfExists("updateNameID", selectedLocationObj.name);
       setValueIfExists("updateDescribtionID", selectedLocationObj.desc);
       setValueIfExists("updateStreetID", selectedLocationObj.street);
