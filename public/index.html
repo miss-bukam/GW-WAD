@@ -10,9 +10,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
        crossorigin="" />
   </head>
-
 <body>
-
 
     <!----------------------------- LOGIN SCREEN ------------------------------------------->
 
@@ -40,8 +38,6 @@
     </div>
 
     <!------------------------- MAIN SCREEN ------------------------------------------>
-
-    
     <div class="main-container" id="mapScreen">
         <h1> Willkommen bei UmweltschadensorteBB!</h1>
         <div class="welcome_Container" style="display: none ;"> 
@@ -88,7 +84,6 @@
         </div>
         <div class="map" id="karte"></div>
     </div>
- 
     </div>
 
     <!---------------------------------- ADD SCREEN ------------------------------------------>
@@ -188,10 +183,12 @@
         &thinsp; | &thinsp;
         <a href="https://www.htw-berlin.de/datenschutz/" target="_blank">Datenschutz</a>
     </footer>
+    <script  type="module" src="/src/db/mongoCRUDs.js"></script>
 
 </body>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="javascripts/fetch.js"></script>
 <script src="javascripts/script.js"></script>
+
 </html>
