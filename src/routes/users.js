@@ -4,7 +4,7 @@ let router = express.Router();
 const mongoCRUDs = require('../db/mongoCRUDs');
 
 //für den BasisPfad /users
-app.use('/users', mongoCRUDs);
+//app.use('/users', mongoCRUDs);
 
 // Wird bei GET http://localhost:8000/users aufgerufen 
 router.get('/', async function(req, res) {

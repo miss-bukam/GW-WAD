@@ -27,21 +27,18 @@ router.get('/', async function(req, res) {
 
 // Wird bei GET <id> http://localhost:8000/users aufgerufen 
 router.get("/:id", async (req, res) => { 
-    console.log("getPost: called");
+    console.log("getPosts: called")
     try {
-        const collection = mongoCRUDs.collection(collectionName); // Hier die Collection initialisieren
-        const query = {_id: new ObjectId(req.params.id)};
-        const result = await collection.findOneLocation(query);
-
-        console.log(result);
-        if(result)
-            res.status(200).json(result);
-        else {
-            res.status(404).send(`Location not found!`);
-        }
+      //let userDoc = await mongo_cruds.findOneUser("admina", "pass1234");
+      let locs = await mongoCRUDs.findOneLocation(req.params.id);
+      if(locs)
+        res.status(200).json(locs);
+      else {
+        res.status(404).send("Locations not found!");
+      }
     } catch (err) {
-        console.log(err);
-        res.status(400).send("Something is not right!!");
+      console.log(err);
+      res.status(400).send("Something is not right!!");
     }
 });
 
