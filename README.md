@@ -1,4 +1,4 @@
-#Uni-Projekt: Website
+Uni-Projekt: Website
 Umweltschadensorte innerhalb Berlin und Brandenburg in einer Karte lokalisieren und speichern.
 
 Mitglieder:
